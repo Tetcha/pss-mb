@@ -27,6 +27,7 @@ class ApiClient {
       final SharedPreferenceProvider preferenceHelper = Get.find();
 
       // include headers
+      options.contentType = "application/json;charset=UTF-8";
       if (preferenceHelper.instance.containsKey(StoreKey.authToken)) {
         options.headers[StoreKey.authToken] =
             'Bearer ${preferenceHelper.authToken}';
@@ -40,7 +41,6 @@ class ApiClient {
       Timer(const Duration(milliseconds: 500), () {
         _uiProvider.setIsLoading = false;
       });
-
       return handler.next(response);
     }, onError: (DioError e, handler) async {
       // make the loading animation at least 500ms

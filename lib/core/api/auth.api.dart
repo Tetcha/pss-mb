@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/api/config.dart' show ApiClient;
 import 'package:pss_m/interface/api/login.api.dart';
@@ -12,8 +13,6 @@ class AuthApi {
       final response = await _apiClient.http.post('/student/login', data: {
         "accessToken": payload.accessToken,
       });
-      print("response $response");
-
       return response;
     } catch (e) {
       print("login error $e");
@@ -23,10 +22,10 @@ class AuthApi {
 
   Future<dynamic> getCurrentUser() async {
     try {
-      final response = await _apiClient.http.get('/users/me');
+      final response = await _apiClient.http.get('/student/me');
       return response;
     } catch (e) {
-      return null;
+      print(e);
       return null;
     }
   }
