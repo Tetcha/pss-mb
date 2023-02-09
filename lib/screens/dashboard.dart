@@ -6,8 +6,7 @@ import 'package:pss_m/widgets/bottom_navigation/index.dart';
 import 'package:pss_m/widgets/loading_overlay/index.dart';
 
 class DashBoardLayout extends StatelessWidget {
-  final Widget children;
-  const DashBoardLayout({super.key, required this.children});
+  const DashBoardLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +19,15 @@ class DashBoardLayout extends StatelessWidget {
             title: const Text('Psych System'),
           ),
           body: SafeArea(
-              child: RepaintBoundary(
-            key: const Key("global key"),
-            child: SingleChildScrollView(
-              child: AutoLogin(
-                children: children,
+            child: RepaintBoundary(
+              key: const Key("global key"),
+              child: SingleChildScrollView(
+                child: AutoLogin(
+                  children: Obx(() => controller.currentScreen),
+                ),
               ),
             ),
-          )),
+          ),
           bottomNavigationBar: Obx(() => controller.isLogin
               ? CBottomNavigationBar(
                   currentIndex: controller.currentIndex,

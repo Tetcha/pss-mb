@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/injection/index.dart';
 import 'package:pss_m/screens/all_doctor.dart';
-import 'package:pss_m/widgets/layout/dashboard.dart';
+import 'package:pss_m/screens/dashboard.dart';
 import 'package:pss_m/screens/home.dart';
 import 'package:pss_m/screens/login.dart';
 import 'package:pss_m/screens/profile.dart';
@@ -43,31 +43,7 @@ class _MyAppState extends State<MyApp> {
           labelSmall: TextStyle(fontSize: 8),
         ),
       ),
-      // home: const DashBoardScreens(),
-      initialRoute: "/login",
-      enableLog: true,
-      getPages: [
-        GetPage(
-          name: '/home',
-          page: () => HomeScreen(),
-        ),
-        GetPage(
-          name: '/login',
-          page: () => const LoginScreen(),
-        ),
-        GetPage(
-          name: '/doctors',
-          page: () => const AllDoctorScreen(),
-        ),
-        GetPage(
-          name: '/setting',
-          page: () => SettingScreen(),
-        ),
-        GetPage(
-          name: "/profile",
-          page: () => const ProfileScreen(),
-        )
-      ],
+      home: const DashBoardLayout(),
     );
   }
 }

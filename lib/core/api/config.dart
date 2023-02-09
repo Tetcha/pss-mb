@@ -7,8 +7,9 @@ import 'package:pss_m/core/constants/store.dart';
 import 'package:pss_m/core/providers/api.provider.dart';
 import 'package:pss_m/core/providers/ui.provider.dart';
 import 'package:pss_m/core/providers/sharePreference.provider.dart';
+import 'package:pss_m/core/providers/user.provider.dart';
 
-class ApiClient {
+class ApiClient extends GetxService {
   final ApiProvider _apiProvider = Get.find();
   final UIProvider _uiProvider = Get.find();
   final SharedPreferenceProvider preferenceHelper = Get.find();

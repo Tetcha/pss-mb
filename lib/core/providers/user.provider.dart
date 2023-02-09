@@ -1,15 +1,12 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pss_m/core/api/auth.api.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Student/student.dart';
-import 'package:pss_m/core/models/User/user.dart';
 import 'package:pss_m/core/providers/sharePreference.provider.dart';
-import 'package:pss_m/core/services/Toast.dart';
 import 'package:pss_m/interface/api/login.api.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 const defaultUser = Student(
   id: "",
@@ -40,6 +37,14 @@ class UserProvider extends GetxController {
   RxBool isLogin = false.obs;
 
   get accessToken => googleAuth.value?.accessToken;
+  get avatarUrl =>
+      googleAccount.value?.photoUrl ??
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg";
+
+  get email => currentUser.value.email;
+  get name => currentUser.value.name;
+  get studentCode => currentUser.value.studentCode;
+  get phone => currentUser.value.phone;
 
   set setIsLogin(bool isLogin) {
     this.isLogin.value = isLogin;
@@ -52,7 +57,16 @@ class UserProvider extends GetxController {
     googleAuth.value = null;
   }
 
-  Future<bool> login() async {
+  Future<bool> signInWithFacebook() async {
+    // Trigger the sign-in flow
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    print("loginResult $loginResult");
+    // Create a credential from the access token
+
+    return true;
+  }
+
+  Future<bool> loginGoogle() async {
     // var googleAccountResponse = await _googleSignIn.signIn();
     // if (googleAccountResponse == null) {
     //   Get.snackbar("Error", "Something wrong happens, please try again later!",
@@ -76,14 +90,19 @@ class UserProvider extends GetxController {
   }
 
   Future<Student?> getCurrentUser() async {
-    var res = await _authApi.getCurrentUser();
-    if (res.data == null) {
-      throw Exception('Get Current User Failed');
-    }
+    try {
+      var res = await _authApi.getCurrentUser();
 
-    var newUser = Student.fromJson(res.data ?? {});
-    currentUser.value = newUser;
-    isLogin.value = true;
-    return newUser;
+      var newUser = Student.fromJson(res.data ?? {});
+      currentUser.value = newUser;
+      isLogin.value = true;
+      return newUser;
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 401) {
+        resetData();
+        _sharedPreferenceProvider.removeAuthToken();
+      }
+      return null;
+    }
   }
 }

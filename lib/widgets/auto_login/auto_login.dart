@@ -1,42 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:pss_m/controllers/auto_login.controller.dart';
 import 'package:pss_m/core/providers/user.provider.dart';
-import 'package:pss_m/screens/login.dart';
 
-class AutoLogin extends StatefulWidget {
+class AutoLogin extends StatelessWidget {
   final Widget children;
-
-  const AutoLogin({super.key, required this.children});
-
-  @override
-  State<AutoLogin> createState() => _AutoLoginState();
-}
-
-class _AutoLoginState extends State<AutoLogin> {
   final UserProvider _userProvider = Get.find();
 
-  @override
-  initState() {
-    super.initState();
-    // uncomment for auto login on app start
-    _userProvider.getCurrentUser().then(
-          (student) => {
-            if (student == null)
-              {_userProvider.setIsLogin = false, Get.off(LoginScreen())}
-            else
-              _userProvider.setIsLogin = true
-          },
-        );
-  }
+  AutoLogin({super.key, required this.children});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => _userProvider.isLogin.value
-          ? widget.children
-          : const Center(
-              child: Text('Unauthorize'),
-            ),
+    return GetBuilder<AutoLoginController>(
+      init: AutoLoginController(),
+      builder: (controller) => Obx(
+        () => _userProvider.isLogin.value
+            ? children
+            : const Center(
+                child: Text('Unauthorize'),
+              ),
+      ),
     );
   }
 }

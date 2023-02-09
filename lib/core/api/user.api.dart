@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:pss_m/core/api/config.dart' show ApiClient;
 
-class UserApi {
+class UserApi extends GetxService {
   final ApiClient _apiClient = Get.find();
 
   Future<Response<dynamic>?> updateUser(

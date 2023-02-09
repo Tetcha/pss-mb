@@ -3,7 +3,7 @@ import 'package:get/get.dart' hide Response;
 import 'package:pss_m/core/api/config.dart' show ApiClient;
 import 'package:pss_m/interface/api/login.api.dart';
 
-class AuthApi {
+class AuthApi extends GetxService {
   final ApiClient _apiClient = Get.find();
 
   Future<String?> login(LoginApiPayload payload) async {

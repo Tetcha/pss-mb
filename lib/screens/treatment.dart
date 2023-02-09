@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pss_m/widgets/layout/dashboard.dart';
+import 'package:pss_m/screens/dashboard.dart';
 
-class MyTreatment extends StatelessWidget {
-  const MyTreatment({super.key});
+class MyTreatmentScreen extends StatelessWidget {
+  const MyTreatmentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const DashBoardLayout(
-      children: Text("my treatment screens"),
-    );
+    return const Text("my treatment screens");
   }
 }
