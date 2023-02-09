@@ -36,7 +36,18 @@ class SettingScreen extends StatelessWidget {
     return DashBoardLayout(
         children: SizedBox(
       height: 500,
-      child: null,
+      child: ListView.builder(
+        itemCount: _settingList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            child: ListTile(
+              title: Text(_settingList[index].title),
+              leading: Icon(_settingList[index].icon),
+              onTap: _settingList[index].onTap,
+            ),
+          );
+        },
+      ),
     ));
   }
 }
