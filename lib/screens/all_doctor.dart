@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
+import 'package:pss_m/widgets/layout/dashboard.dart';
 import 'package:pss_m/widgets/title/title.dart';
 
 class AllDoctorScreen extends StatelessWidget {
@@ -40,7 +41,8 @@ class AllDoctorScreen extends StatelessWidget {
       doctor,
       doctor,
     ];
-    return Container(
+    return DashBoardLayout(
+        children: Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
         vertical: 20,
@@ -62,6 +64,6 @@ class AllDoctorScreen extends StatelessWidget {
           }).toList(),
         ],
       ),
-    );
+    ));
   }
 }

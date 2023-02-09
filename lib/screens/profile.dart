@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/api/user.api.dart';
@@ -8,6 +7,7 @@ import 'package:pss_m/core/form/text_only.dart';
 import 'package:pss_m/core/providers/sharePreference.provider.dart';
 import 'package:pss_m/core/providers/user.provider.dart';
 import 'package:pss_m/interface/form/radio/radio_data.dart';
+import 'package:pss_m/widgets/layout/dashboard.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -29,16 +29,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     // TODO: implement initState
 
-    _studentCodeController =
-        TextEditingController(text: _userProvider.currentUser.name);
+    _studentCodeController = TextEditingController(
+        text: _userProvider.currentUser.value.studentCode);
     _phoneController =
-        TextEditingController(text: _userProvider.currentUser.name);
+        TextEditingController(text: _userProvider.currentUser.value.phone);
     _birthdayController =
-        TextEditingController(text: _userProvider.currentUser.name);
+        TextEditingController(text: _userProvider.currentUser.value.birthday);
   }
 
   void _onClear() {
-    _studentCodeController.text = _userProvider.currentUser.name;
+    _studentCodeController.text = _userProvider.currentUser.value.name;
   }
 
   void _onSubmit() async {}
@@ -49,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return DashBoardLayout(
+        children: Column(
       children: [
         Container(
           margin: const EdgeInsets.symmetric(vertical: 20),
@@ -69,13 +70,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(height: 10),
             TextOnly(
               label: "Email",
-              value: _userProvider.googleAccount.value?.email ?? "Unknown",
+              value: _userProvider.currentUser.value.email,
             ),
             const SizedBox(height: 10),
             TextOnly(
               label: "Name",
-              value:
-                  _userProvider.googleAccount.value?.displayName ?? "Unknown",
+              value: _userProvider.currentUser.value.name,
             ),
             const SizedBox(height: 10),
             TextFieldC(
@@ -134,6 +134,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ]),
         )
       ],
-    );
+    ));
   }
 }

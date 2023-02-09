@@ -11,6 +11,7 @@ import 'package:pss_m/core/providers/sharePreference.provider.dart';
 class ApiClient {
   final ApiProvider _apiProvider = Get.find();
   final UIProvider _uiProvider = Get.find();
+  final SharedPreferenceProvider preferenceHelper = Get.find();
   Dio http = Dio(
     BaseOptions(
       baseUrl: 'http://10.0.2.2:4000/api/v1',
@@ -24,8 +25,6 @@ class ApiClient {
   handleOnLoad() async {
     http.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      final SharedPreferenceProvider preferenceHelper = Get.find();
-
       // include headers
       options.contentType = "application/json;charset=UTF-8";
       if (preferenceHelper.instance.containsKey(StoreKey.authToken)) {

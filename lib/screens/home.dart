@@ -6,6 +6,7 @@ import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/interface/carousel/carouselData.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
 import 'package:pss_m/widgets/carousel/carousel.dart';
+import 'package:pss_m/widgets/layout/dashboard.dart';
 import 'package:pss_m/widgets/title/title.dart';
 
 final List<String> imgList = [
@@ -47,7 +48,8 @@ class HomeScreen extends StatelessWidget {
       doctor,
       doctor
     ];
-    return Column(
+    return DashBoardLayout(
+        children: Column(
       children: [
         const SizedBox(height: 20),
         Carousel(
@@ -113,6 +115,6 @@ class HomeScreen extends StatelessWidget {
           ),
         )
       ],
-    );
+    ));
   }
 }

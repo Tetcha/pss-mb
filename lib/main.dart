@@ -3,14 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/injection/index.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
 import 'package:pss_m/screens/all_doctor.dart';
+import 'package:pss_m/widgets/layout/dashboard.dart';
 import 'package:pss_m/screens/home.dart';
+import 'package:pss_m/screens/login.dart';
 import 'package:pss_m/screens/profile.dart';
 import 'package:pss_m/screens/setting.dart';
-import 'package:pss_m/widgets/auto_login/auto_login.dart';
-import 'package:pss_m/widgets/bottom_navigation/index.dart';
-import 'package:pss_m/widgets/loading_overlay/index.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,27 +29,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _currentIndex = 0;
-
-  List<Widget> widgetList = <Widget>[
-    HomeScreen(),
-    const AllDoctorScreen(),
-    const ProfileScreen(),
-    SettingScreen(),
-  ];
-
-  void _onChangeTab(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final UserProvider userProvider = Get.find();
-
     return GetMaterialApp(
-      title: 'Flutter Base',
+      title: 'PSS',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         backgroundColor: Colors.grey[200],
@@ -61,30 +43,31 @@ class _MyAppState extends State<MyApp> {
           labelSmall: TextStyle(fontSize: 8),
         ),
       ),
-      home: LoadingOverlay(
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            title: const Text('Psych System'),
-          ),
-          body: RepaintBoundary(
-            key: const Key("global key"),
-            child: SingleChildScrollView(
-              child: AutoLogin(
-                children: widgetList[_currentIndex],
-              ),
-            ),
-          ),
-          bottomNavigationBar: Obx(
-            () => userProvider.isLogin.value
-                ? CBottomNavigationBar(
-                    currentIndex: _currentIndex,
-                    onChangeTab: _onChangeTab,
-                  )
-                : const SizedBox(),
-          ),
+      // home: const DashBoardScreens(),
+      initialRoute: "/login",
+      enableLog: true,
+      getPages: [
+        GetPage(
+          name: '/home',
+          page: () => HomeScreen(),
         ),
-      ),
+        GetPage(
+          name: '/login',
+          page: () => const LoginScreen(),
+        ),
+        GetPage(
+          name: '/doctors',
+          page: () => const AllDoctorScreen(),
+        ),
+        GetPage(
+          name: '/setting',
+          page: () => SettingScreen(),
+        ),
+        GetPage(
+          name: "/profile",
+          page: () => const ProfileScreen(),
+        )
+      ],
     );
   }
 }

@@ -19,12 +19,24 @@ class _AutoLoginState extends State<AutoLogin> {
   initState() {
     super.initState();
     // uncomment for auto login on app start
-    // _userProvider.getCurrentUser();
+    _userProvider.getCurrentUser().then(
+          (student) => {
+            if (student == null)
+              {_userProvider.setIsLogin = false, Get.off(LoginScreen())}
+            else
+              _userProvider.setIsLogin = true
+          },
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx((() =>
-        _userProvider.isLogin.value ? widget.children : const LoginScreen()));
+    return Obx(
+      () => _userProvider.isLogin.value
+          ? widget.children
+          : const Center(
+              child: Text('Unauthorize'),
+            ),
+    );
   }
 }
