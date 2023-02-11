@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/all_doctor.controller.dart';
-import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
 import 'package:pss_m/widgets/title/title.dart';
 

@@ -60,7 +60,7 @@ class UserProvider extends GetxController {
   Future<bool> signInWithFacebook() async {
     // Trigger the sign-in flow
     final LoginResult loginResult = await FacebookAuth.instance.login();
-    print("loginResult $loginResult");
+    print("loginResult ${loginResult.status}");
     // Create a credential from the access token
 
     return true;

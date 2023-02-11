@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Psych-Support-System</string>
+    <string name="facebook_app_id">502919432021389</string>
+    <string name="facebook_client_token">bed2eb4ea3b9f804cb4328c0f32aa60f</string>
+    <string name="fb_login_protocol_scheme">fb502919432021389</string>
+</resources>
