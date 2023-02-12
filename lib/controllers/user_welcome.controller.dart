@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 import 'package:pss_m/core/providers/user.provider.dart';
 
 class UserWelcomeController extends GetxController {
-  UserProvider _userProvider = Get.find();
+  final UserProvider _userProvider = Get.find();
 
-  String get avatarUrl =>
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg";
+  String? get avatarUrl => _userProvider.userAvatarUrl;
+
+  String get name => _userProvider.currentUser.value.name;
+  double get balance => _userProvider.currentUser.value.balance;
 }

@@ -5,7 +5,7 @@ import 'package:pss_m/interface/form/radio/radio_data.dart';
 
 class RadioC<T> extends StatefulWidget {
   final String label;
-  final List<RadioData<T>> options;
+  final List<IRadioData<T>> options;
   Function(T value)? onInputChange;
   final T? defaultValue;
   RadioC({

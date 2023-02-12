@@ -26,12 +26,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20),
-              child: const Center(
+              child: Center(
                 child: CircleAvatar(
-                  radius: 45,
-                  backgroundImage: NetworkImage(
-                      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg"),
-                ),
+                    radius: 45,
+                    backgroundImage: NetworkImage(
+                      controller.avatarUrl ?? "",
+                    )),
               ),
             ),
             Container(
@@ -65,8 +65,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     RadioC(
                       label: 'Gender',
                       options: [
-                        RadioData(label: "Male", value: 'MALE'),
-                        RadioData(label: "Female", value: 'FEMALE'),
+                        IRadioData(label: "Male", value: 'MALE'),
+                        IRadioData(label: "Female", value: 'FEMALE'),
                       ],
                       onInputChange: controller.onGenderChange,
                     ),

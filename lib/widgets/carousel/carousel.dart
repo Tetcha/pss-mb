@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:pss_m/interface/carousel/carouselData.dart';
+import 'package:pss_m/interface/carousel/carousel_item.dart';
 
 class Carousel extends StatelessWidget {
-  final List<CarouselItem> data;
+  final List<ICarouselItem> data;
   Carousel({super.key, required this.data});
 
   late final List<Widget> imageSliders = data

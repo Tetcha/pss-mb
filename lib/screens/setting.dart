@@ -1,68 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/sharePreference.provider.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
-import 'package:pss_m/screens/login.dart';
-import 'package:pss_m/screens/profile.dart';
+import 'package:pss_m/controllers/setting.controller.dart';
 import 'package:pss_m/widgets/User/user_welcome.dart';
-
-class SettingList {
-  String title;
-  IconData icon;
-  VoidCallback onTap;
-
-  SettingList({required this.title, required this.icon, required this.onTap});
-}
+import 'package:pss_m/widgets/setting_item/index.dart';
 
 class SettingScreen extends StatelessWidget {
-  final SharedPreferenceProvider _preferenceProvider = Get.find();
-  final UserProvider _userProvider = Get.find();
-  late final List<SettingList> _settingList = [
-    SettingList(
-        title: "Setting",
-        icon: Icons.settings,
-        onTap: () {
-          Get.to(() => const ProfileScreen(),
-              transition: Transition.leftToRight);
-        }),
-    SettingList(title: "Help", icon: Icons.help, onTap: () {}),
-    SettingList(title: "About", icon: Icons.info, onTap: () {}),
-    SettingList(
-        title: "Logout",
-        icon: Icons.logout,
-        onTap: () {
-          _preferenceProvider.removeAuthToken();
-          _userProvider.resetData();
-          Get.off(() => LoginScreen());
-        }),
-  ];
-
-  SettingScreen({super.key});
+  const SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      child: Column(
-        children: [
-          const UserWelcome(),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 500,
-            child: ListView.builder(
-              itemCount: _settingList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(_settingList[index].title),
-                    leading: Icon(_settingList[index].icon),
-                    onTap: _settingList[index].onTap,
-                  ),
-                );
-              },
-            ),
-          )
-        ],
+    return GetBuilder<SettingController>(
+      init: SettingController(),
+      builder: (controller) => Container(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+        child: Column(
+          children: [
+            const UserWelcome(),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ...controller.settingList
+                    .map(
+                      (e) => IconLabelWidget(
+                        icon: e.icon,
+                        label: e.title,
+                        onTap: e.onTap,
+                      ),
+                    )
+                    .toList()
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

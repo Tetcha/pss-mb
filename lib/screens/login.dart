@@ -3,9 +3,6 @@ import 'package:get/get.dart';
 import 'package:pss_m/controllers/login.controller.dart';
 import 'package:pss_m/core/form/error_message.dart';
 import 'package:pss_m/core/form/text_field.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
-import 'package:pss_m/screens/dashboard.dart';
-import 'package:pss_m/screens/home.dart';
 import 'package:pss_m/widgets/layout/empty.dart';
 
 class LoginScreen extends StatefulWidget {

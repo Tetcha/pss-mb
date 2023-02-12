@@ -6,7 +6,7 @@ import 'package:pss_m/interface/api/login.api.dart';
 
 class FacebookService extends GetxController {
   final AuthApi _authApi = Get.find();
-
+  var facebookAccount = Rx<User?>(null);
   void resetData() {}
 
   Future<UserCredential> getCredential() async {
@@ -18,7 +18,10 @@ class FacebookService extends GetxController {
         FacebookAuthProvider.credential(loginResult.accessToken?.token ?? "");
 
     // Once signed in, return the UserCredential
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    UserCredential result = await FirebaseAuth.instance
+        .signInWithCredential(facebookAuthCredential);
+    facebookAccount.value = result.user;
+    return result;
   }
 
   Future<String?> login() async {

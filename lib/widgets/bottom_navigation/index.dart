@@ -21,12 +21,12 @@ class CBottomNavigationBar extends StatelessWidget {
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Doctor',
+          icon: Icon(Icons.people),
+          label: 'Doctors',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.history),
-          label: 'Treatment',
+          label: 'Appointments',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),

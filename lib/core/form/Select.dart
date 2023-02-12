@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pss_m/interface/form/select/select_data.dart';
 
 class SelectC extends StatefulWidget {
-  late List<SelectItem> selectData;
+  late List<ISelectItem> selectData;
   late dynamic defaultValue;
   late Function? onChange;
   SelectC({
@@ -45,7 +45,7 @@ class _SelectCState extends State<SelectC> {
                 widget.onChange!(newValue);
               });
             },
-            items: widget.selectData.map((SelectItem value) {
+            items: widget.selectData.map((ISelectItem value) {
               return DropdownMenuItem(
                 value: value.value,
                 child: Text(value.label),

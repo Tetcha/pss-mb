@@ -12,6 +12,8 @@ class ProfileController extends GetxController {
       TextEditingController(text: _userProvider.currentUser.value.birthday);
   String? genderValue;
 
+  String? get avatarUrl => _userProvider.userAvatarUrl;
+
   onClear() {
     studentCodeController.text = _userProvider.currentUser.value.name;
   }

@@ -1,10 +1,10 @@
 enum OrderType { asc, desc }
 
-class SelectItem {
+class ISelectItem {
   String label;
   dynamic value;
 
-  SelectItem({
+  ISelectItem({
     this.label = '',
     this.value = '',
   });

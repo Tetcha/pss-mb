@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
         textTheme: const TextTheme(
           labelSmall: TextStyle(fontSize: 8),
         ),
+        fontFamily: 'NunitoSans',
       ),
       home: const DashBoardLayout(),
     );

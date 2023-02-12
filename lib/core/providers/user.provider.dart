@@ -29,10 +29,22 @@ class UserProvider extends GetxController {
   final GoogleService _googleService = Get.find();
   final FacebookService _facebookService = Get.find();
 
+  LoginType? loginType;
   var currentUser = Rx<Student>(defaultUser);
   RxBool isLogin = false.obs;
 
   Student get user => currentUser.value;
+  String? get userAvatarUrl {
+    String defaultAvatar =
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg";
+    if (loginType == LoginType.FACEBOOK) {
+      return _facebookService.facebookAccount.value?.photoURL ?? defaultAvatar;
+    } else if (loginType == LoginType.GOOGLE) {
+      return _googleService.googleAccount.value?.photoUrl ?? defaultAvatar;
+    }
+
+    return defaultAvatar;
+  }
 
   set setIsLogin(bool isLogin) {
     this.isLogin.value = isLogin;
