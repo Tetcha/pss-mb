@@ -4,6 +4,7 @@ import 'package:pss_m/core/providers/sharePreference.provider.dart';
 import 'package:pss_m/core/providers/user.provider.dart';
 import 'package:pss_m/screens/login.dart';
 import 'package:pss_m/screens/profile.dart';
+import 'package:pss_m/widgets/User/user_welcome.dart';
 
 class SettingList {
   String title;
@@ -40,19 +41,28 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500,
-      child: ListView.builder(
-        itemCount: _settingList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Card(
-            child: ListTile(
-              title: Text(_settingList[index].title),
-              leading: Icon(_settingList[index].icon),
-              onTap: _settingList[index].onTap,
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      child: Column(
+        children: [
+          const UserWelcome(),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 500,
+            child: ListView.builder(
+              itemCount: _settingList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(_settingList[index].title),
+                    leading: Icon(_settingList[index].icon),
+                    onTap: _settingList[index].onTap,
+                  ),
+                );
+              },
             ),
-          );
-        },
+          )
+        ],
       ),
     );
   }

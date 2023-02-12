@@ -14,7 +14,8 @@ class Student with _$Student {
     required Gender? gender,
     required double balance,
     required String name,
-    required String email,
+    required String? email,
+    required bool isActive,
   }) = _Student;
 
   factory Student.fromJson(Map<String, dynamic> json) =>

@@ -2,11 +2,13 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.example.pss_m"
 >
+
+	<uses-permission android:name="android.permission.INTERNET" />
 	<queries>
+		<package android:name="com.facebook.katana" />
+
 		<provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
 	</queries>
-	<uses-permission android:name="android.permission.INTERNET" />
-
 	<application
 		android:label="pss_m"
 		android:name="${applicationName}"

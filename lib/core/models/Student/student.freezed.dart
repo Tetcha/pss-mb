@@ -27,7 +27,8 @@ mixin _$Student {
   Gender? get gender => throw _privateConstructorUsedError;
   double get balance => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  bool get isActive => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $StudentCopyWith<$Res> {
       Gender? gender,
       double balance,
       String name,
-      String email});
+      String? email,
+      bool isActive});
 }
 
 /// @nodoc
@@ -70,7 +72,8 @@ class _$StudentCopyWithImpl<$Res, $Val extends Student>
     Object? gender = freezed,
     Object? balance = null,
     Object? name = null,
-    Object? email = null,
+    Object? email = freezed,
+    Object? isActive = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -101,10 +104,14 @@ class _$StudentCopyWithImpl<$Res, $Val extends Student>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -124,7 +131,8 @@ abstract class _$$_StudentCopyWith<$Res> implements $StudentCopyWith<$Res> {
       Gender? gender,
       double balance,
       String name,
-      String email});
+      String? email,
+      bool isActive});
 }
 
 /// @nodoc
@@ -144,7 +152,8 @@ class __$$_StudentCopyWithImpl<$Res>
     Object? gender = freezed,
     Object? balance = null,
     Object? name = null,
-    Object? email = null,
+    Object? email = freezed,
+    Object? isActive = null,
   }) {
     return _then(_$_Student(
       id: null == id
@@ -175,10 +184,14 @@ class __$$_StudentCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -194,7 +207,8 @@ class _$_Student implements _Student {
       required this.gender,
       required this.balance,
       required this.name,
-      required this.email});
+      required this.email,
+      required this.isActive});
 
   factory _$_Student.fromJson(Map<String, dynamic> json) =>
       _$$_StudentFromJson(json);
@@ -214,11 +228,13 @@ class _$_Student implements _Student {
   @override
   final String name;
   @override
-  final String email;
+  final String? email;
+  @override
+  final bool isActive;
 
   @override
   String toString() {
-    return 'Student(id: $id, birthday: $birthday, studentCode: $studentCode, phone: $phone, gender: $gender, balance: $balance, name: $name, email: $email)';
+    return 'Student(id: $id, birthday: $birthday, studentCode: $studentCode, phone: $phone, gender: $gender, balance: $balance, name: $name, email: $email, isActive: $isActive)';
   }
 
   @override
@@ -235,13 +251,15 @@ class _$_Student implements _Student {
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.balance, balance) || other.balance == balance) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, birthday, studentCode, phone,
-      gender, balance, name, email);
+      gender, balance, name, email, isActive);
 
   @JsonKey(ignore: true)
   @override
@@ -266,7 +284,8 @@ abstract class _Student implements Student {
       required final Gender? gender,
       required final double balance,
       required final String name,
-      required final String email}) = _$_Student;
+      required final String? email,
+      required final bool isActive}) = _$_Student;
 
   factory _Student.fromJson(Map<String, dynamic> json) = _$_Student.fromJson;
 
@@ -285,7 +304,9 @@ abstract class _Student implements Student {
   @override
   String get name;
   @override
-  String get email;
+  String? get email;
+  @override
+  bool get isActive;
   @override
   @JsonKey(ignore: true)
   _$$_StudentCopyWith<_$_Student> get copyWith =>

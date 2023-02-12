@@ -12,7 +12,7 @@ class AutoLoginController extends GetxController {
     super.onInit();
     (() async {
       Student? student = await _userProvider.getCurrentUser();
-      if (student == null) Get.off(() => LoginScreen());
+      if (student == null) Get.off(() => const LoginScreen());
     })();
   }
 }

@@ -14,7 +14,8 @@ _$_Student _$$_StudentFromJson(Map<String, dynamic> json) => _$_Student(
       gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
       balance: (json['balance'] as num).toDouble(),
       name: json['name'] as String,
-      email: json['email'] as String,
+      email: json['email'] as String?,
+      isActive: json['isActive'] as bool,
     );
 
 Map<String, dynamic> _$$_StudentToJson(_$_Student instance) =>
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_StudentToJson(_$_Student instance) =>
       'balance': instance.balance,
       'name': instance.name,
       'email': instance.email,
+      'isActive': instance.isActive,
     };
 
 const _$GenderEnumMap = {

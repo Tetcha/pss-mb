@@ -19,14 +19,14 @@ class LoginController extends GetxController {
   onGoogleSignIn() async {
     bool isLoginSuccess = await _userProvider.loginGoogle();
     if (isLoginSuccess == true) {
-      Get.off(() => DashBoardLayout());
+      Get.off(() => const DashBoardLayout());
     }
   }
 
   onFacebookSignIn() async {
-    bool isLoginSuccess = await _userProvider.signInWithFacebook();
+    bool isLoginSuccess = await _userProvider.loginFacebook();
     if (isLoginSuccess == true) {
-      Get.off(() => DashBoardLayout());
+      Get.off(() => const DashBoardLayout());
     }
   }
 

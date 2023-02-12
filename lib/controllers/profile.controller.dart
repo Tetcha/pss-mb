@@ -17,7 +17,6 @@ class ProfileController extends GetxController {
   }
 
   onSubmit() async {
-    print("--------------");
     print(studentCodeController.value.text);
     print(genderValue);
   }
@@ -25,8 +24,4 @@ class ProfileController extends GetxController {
   onGenderChange(String? value) {
     genderValue = value;
   }
-
-  get avatarUrl => _userProvider.avatarUrl;
-  get userEmail => _userProvider.currentUser.value.email;
-  get username => _userProvider.currentUser.value.name;
 }

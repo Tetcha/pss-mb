@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/profile.controller.dart';
-import 'package:pss_m/core/api/user.api.dart';
 import 'package:pss_m/core/form/radio.dart';
 import 'package:pss_m/core/form/text_field.dart';
 import 'package:pss_m/core/form/text_only.dart';
-import 'package:pss_m/core/providers/sharePreference.provider.dart';
 import 'package:pss_m/core/providers/user.provider.dart';
 import 'package:pss_m/interface/form/radio/radio_data.dart';
 import 'package:pss_m/widgets/layout/empty.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,6 +16,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final UserProvider _userProvider = Get.find();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
@@ -28,10 +26,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20),
-              child: Center(
+              child: const Center(
                 child: CircleAvatar(
                   radius: 45,
-                  backgroundImage: NetworkImage(controller.avatarUrl),
+                  backgroundImage: NetworkImage(
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg"),
                 ),
               ),
             ),
@@ -43,10 +42,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 10),
                     TextOnly(
                       label: "Email",
-                      value: controller.userEmail,
+                      value: _userProvider.currentUser.value.email ?? "unknown",
                     ),
                     const SizedBox(height: 10),
-                    TextOnly(label: "Name", value: controller.username),
+                    TextOnly(
+                      label: "Name",
+                      value: _userProvider.currentUser.value.name,
+                    ),
                     const SizedBox(height: 10),
                     TextFieldC(
                       controller: controller.studentCodeController,
