@@ -16,6 +16,8 @@ class Student with _$Student {
     required String name,
     required String? email,
     required bool isActive,
+    String? createAt,
+    String? updateAt,
   }) = _Student;
 
   factory Student.fromJson(Map<String, dynamic> json) =>

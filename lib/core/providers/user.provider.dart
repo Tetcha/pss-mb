@@ -1,15 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pss_m/core/api/auth.api.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Student/student.dart';
 import 'package:pss_m/core/providers/sharePreference.provider.dart';
 import 'package:pss_m/core/services/facebook.auth.dart';
 import 'package:pss_m/core/services/google.auth.dart';
-import 'package:pss_m/interface/api/login.api.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 const defaultUser = Student(
   id: "",

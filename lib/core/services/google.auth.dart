@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pss_m/core/api/auth.api.dart';
-import 'package:pss_m/interface/api/login.api.dart';
+import 'package:pss_m/interface/api/auth/login/login.api.dart';
 
 class GoogleService extends GetxService {
   final AuthApi _authApi = Get.find();

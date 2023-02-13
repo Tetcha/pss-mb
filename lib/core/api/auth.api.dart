@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:pss_m/core/api/config.dart' show ApiClient;
-import 'package:pss_m/interface/api/login.api.dart';
+import 'package:pss_m/interface/api/auth/login/login.api.dart';
 
 class AuthApi extends GetxService {
   final ApiClient _apiClient = Get.find();

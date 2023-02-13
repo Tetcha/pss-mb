@@ -29,6 +29,8 @@ mixin _$Student {
   String get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   bool get isActive => throw _privateConstructorUsedError;
+  String? get createAt => throw _privateConstructorUsedError;
+  String? get updateAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +51,9 @@ abstract class $StudentCopyWith<$Res> {
       double balance,
       String name,
       String? email,
-      bool isActive});
+      bool isActive,
+      String? createAt,
+      String? updateAt});
 }
 
 /// @nodoc
@@ -74,6 +78,8 @@ class _$StudentCopyWithImpl<$Res, $Val extends Student>
     Object? name = null,
     Object? email = freezed,
     Object? isActive = null,
+    Object? createAt = freezed,
+    Object? updateAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -112,6 +118,14 @@ class _$StudentCopyWithImpl<$Res, $Val extends Student>
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
+      createAt: freezed == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updateAt: freezed == updateAt
+          ? _value.updateAt
+          : updateAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -132,7 +146,9 @@ abstract class _$$_StudentCopyWith<$Res> implements $StudentCopyWith<$Res> {
       double balance,
       String name,
       String? email,
-      bool isActive});
+      bool isActive,
+      String? createAt,
+      String? updateAt});
 }
 
 /// @nodoc
@@ -154,6 +170,8 @@ class __$$_StudentCopyWithImpl<$Res>
     Object? name = null,
     Object? email = freezed,
     Object? isActive = null,
+    Object? createAt = freezed,
+    Object? updateAt = freezed,
   }) {
     return _then(_$_Student(
       id: null == id
@@ -192,6 +210,14 @@ class __$$_StudentCopyWithImpl<$Res>
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
+      createAt: freezed == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updateAt: freezed == updateAt
+          ? _value.updateAt
+          : updateAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -208,7 +234,9 @@ class _$_Student implements _Student {
       required this.balance,
       required this.name,
       required this.email,
-      required this.isActive});
+      required this.isActive,
+      this.createAt,
+      this.updateAt});
 
   factory _$_Student.fromJson(Map<String, dynamic> json) =>
       _$$_StudentFromJson(json);
@@ -231,10 +259,14 @@ class _$_Student implements _Student {
   final String? email;
   @override
   final bool isActive;
+  @override
+  final String? createAt;
+  @override
+  final String? updateAt;
 
   @override
   String toString() {
-    return 'Student(id: $id, birthday: $birthday, studentCode: $studentCode, phone: $phone, gender: $gender, balance: $balance, name: $name, email: $email, isActive: $isActive)';
+    return 'Student(id: $id, birthday: $birthday, studentCode: $studentCode, phone: $phone, gender: $gender, balance: $balance, name: $name, email: $email, isActive: $isActive, createAt: $createAt, updateAt: $updateAt)';
   }
 
   @override
@@ -253,13 +285,17 @@ class _$_Student implements _Student {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.isActive, isActive) ||
-                other.isActive == isActive));
+                other.isActive == isActive) &&
+            (identical(other.createAt, createAt) ||
+                other.createAt == createAt) &&
+            (identical(other.updateAt, updateAt) ||
+                other.updateAt == updateAt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, birthday, studentCode, phone,
-      gender, balance, name, email, isActive);
+      gender, balance, name, email, isActive, createAt, updateAt);
 
   @JsonKey(ignore: true)
   @override
@@ -285,7 +321,9 @@ abstract class _Student implements Student {
       required final double balance,
       required final String name,
       required final String? email,
-      required final bool isActive}) = _$_Student;
+      required final bool isActive,
+      final String? createAt,
+      final String? updateAt}) = _$_Student;
 
   factory _Student.fromJson(Map<String, dynamic> json) = _$_Student.fromJson;
 
@@ -307,6 +345,10 @@ abstract class _Student implements Student {
   String? get email;
   @override
   bool get isActive;
+  @override
+  String? get createAt;
+  @override
+  String? get updateAt;
   @override
   @JsonKey(ignore: true)
   _$$_StudentCopyWith<_$_Student> get copyWith =>

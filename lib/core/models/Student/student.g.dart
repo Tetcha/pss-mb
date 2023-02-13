@@ -16,6 +16,8 @@ _$_Student _$$_StudentFromJson(Map<String, dynamic> json) => _$_Student(
       name: json['name'] as String,
       email: json['email'] as String?,
       isActive: json['isActive'] as bool,
+      createAt: json['createAt'] as String?,
+      updateAt: json['updateAt'] as String?,
     );
 
 Map<String, dynamic> _$$_StudentToJson(_$_Student instance) =>
@@ -29,6 +31,8 @@ Map<String, dynamic> _$$_StudentToJson(_$_Student instance) =>
       'name': instance.name,
       'email': instance.email,
       'isActive': instance.isActive,
+      'createAt': instance.createAt,
+      'updateAt': instance.updateAt,
     };
 
 const _$GenderEnumMap = {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/profile.controller.dart';
+import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/form/radio.dart';
 import 'package:pss_m/core/form/text_field.dart';
 import 'package:pss_m/core/form/text_only.dart';
@@ -40,14 +41,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 10),
-                    TextOnly(
+                    TextFieldC(
+                      controller: controller.emailController,
                       label: "Email",
-                      value: _userProvider.currentUser.value.email ?? "unknown",
+                      name: "email",
                     ),
                     const SizedBox(height: 10),
                     TextOnly(
                       label: "Name",
-                      value: _userProvider.currentUser.value.name,
+                      value: controller.name,
                     ),
                     const SizedBox(height: 10),
                     TextFieldC(
@@ -62,11 +64,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       name: "phone",
                     ),
                     const SizedBox(height: 10),
-                    RadioC(
+                    RadioC<Gender>(
                       label: 'Gender',
                       options: [
-                        IRadioData(label: "Male", value: 'MALE'),
-                        IRadioData(label: "Female", value: 'FEMALE'),
+                        IRadioData(label: "Male", value: Gender.MALE),
+                        IRadioData(label: "Female", value: Gender.FEMALE),
                       ],
                       onInputChange: controller.onGenderChange,
                     ),
