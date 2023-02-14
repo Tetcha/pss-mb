@@ -8,20 +8,18 @@ part 'doctor.g.dart';
 class Doctor with _$Doctor {
   const factory Doctor({
     required String id,
-    required String createAt,
-    required String updateAt,
     required String birthday,
     required String phone,
+    required String username,
+    @Default("https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80")
+        String? avatar,
+    @Default("Doctor have not set the intro yet! ") String? briefInfo,
     required Gender gender,
     required double balance,
-    required bool status,
     required String name,
-    required String email,
-    // new
-    required String photoUrl,
-    required String introduction,
-    @Default("") String googleId,
-    @Default("") String facebookId,
+    required bool isActive,
+    required String createAt,
+    required String updateAt,
   }) = _Doctor;
 
   factory Doctor.fromJson(Map<String, dynamic> json) => _$DoctorFromJson(json);

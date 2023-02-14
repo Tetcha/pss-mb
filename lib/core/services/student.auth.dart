@@ -9,10 +9,10 @@ class StudentServices extends GetxController {
   Future<Student?> updateUser(UpdateStudentPayload payload) async {
     try {
       final response = await _studentApi.updateUser(payload);
-      print("service $response");
-      return response?.data;
+
+      Student student = Student.fromJson(response!.data!);
+      return student;
     } catch (e) {
-      print(e);
       return null;
     }
   }

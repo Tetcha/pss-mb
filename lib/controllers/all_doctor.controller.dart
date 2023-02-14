@@ -1,36 +1,61 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
+import 'package:pss_m/core/services/doctor.auth.dart';
+import 'package:pss_m/interface/api/common.dart';
+import 'package:pss_m/interface/api/doctor/doctor_filter/doctor_filter.dart';
 
 class AllDoctorController extends GetxController {
-  Doctor doctor = const Doctor(
-    id: "1",
-    createAt: "",
-    updateAt: "",
-    birthday: "01/01/2001",
-    phone: "",
-    gender: Gender.MALE,
-    balance: 9999,
-    status: true,
-    name: "Dau Le Duc",
-    email: "dauleduc2@gmail.com",
-    photoUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg",
-    introduction: "Hello, I'm Dau Le Duc. Nice to meet you! ",
-  );
+  final DoctorService _doctorService = Get.find();
+  late RxList<Doctor> allDoctor = RxList<Doctor>([]);
 
-  late List<Doctor> availableDoctor = [
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-    doctor,
-  ];
+  ScrollController scrollController = ScrollController();
+  RxBool isEnd = false.obs;
+  int countValue = 10;
+  int _currentPage = 0;
+
+  get itemCount {
+    if (isEnd.value) return allDoctor.length;
+    return allDoctor.length + 1;
+  }
+
+  void getAllDoctor() async {
+    print("calling api in page $_currentPage");
+    FilterResponse<Doctor>? response = await _doctorService.getDoctorList(
+        DoctorFilterPayload(currentPage: _currentPage, pageSize: 10));
+
+    allDoctor.addAll(response!.data);
+    countValue = response.count;
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+
+    getAllDoctor();
+    // on scroll to bottom, call to get more data
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        onLoadMore();
+      }
+    });
+  }
+
+  Future<void> onRefresh() async {
+    allDoctor.clear();
+    _currentPage = 0;
+    getAllDoctor();
+  }
+
+  Future<void> onLoadMore() async {
+    print("on load more");
+    if (allDoctor.length >= countValue) {
+      isEnd.value = true;
+      return;
+    }
+    _currentPage++;
+    getAllDoctor();
+  }
 }

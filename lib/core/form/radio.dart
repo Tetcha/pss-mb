@@ -59,7 +59,7 @@ class _RadioCState<T> extends State<RadioC<T>> {
                     ),
                     Text(
                       element.label,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: StyleTheme.textSize,
                       ),
                     ),

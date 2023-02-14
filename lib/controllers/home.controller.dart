@@ -45,12 +45,12 @@ class HomeController extends GetxController {
     phone: "",
     gender: Gender.MALE,
     balance: 9999,
-    status: true,
+    isActive: true,
     name: "Dau Le Duc",
-    email: "dauleduc2@gmail.com",
-    photoUrl:
+    avatar:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg",
-    introduction: "Hello, I'm Dau Le Duc. Nice to meet you! ",
+    briefInfo: "Hello, I'm Dau Le Duc. Nice to meet you! ",
+    username: '',
   );
   late List<Doctor> availableDoctor = [
     doctor,

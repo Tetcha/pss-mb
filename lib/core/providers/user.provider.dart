@@ -6,6 +6,7 @@ import 'package:pss_m/core/models/Student/student.dart';
 import 'package:pss_m/core/providers/sharePreference.provider.dart';
 import 'package:pss_m/core/services/facebook.auth.dart';
 import 'package:pss_m/core/services/google.auth.dart';
+import 'package:pss_m/util/date.dart';
 
 const defaultUser = Student(
   id: "",
@@ -28,6 +29,9 @@ class UserProvider extends GetxController {
   LoginType? loginType;
   var currentUser = Rx<Student>(defaultUser);
   RxBool isLogin = false.obs;
+  String get birthday {
+    return DateUtil.toText(DateTime.parse(currentUser.value.birthday ?? ""));
+  }
 
   Student get user => currentUser.value;
   String? get userAvatarUrl {
@@ -51,6 +55,10 @@ class UserProvider extends GetxController {
     isLogin.value = false;
     _googleService.resetData();
     _facebookService.resetData();
+  }
+
+  void updateUserInfo() {
+    getCurrentUser();
   }
 
   Future<bool> loginFacebook() async {

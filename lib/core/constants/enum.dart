@@ -13,3 +13,10 @@ enum LoginType {
   @JsonValue('FACEBOOK')
   FACEBOOK
 }
+
+enum Oder {
+  @JsonValue('ASC')
+  ASC,
+  @JsonValue('DESC')
+  DESC
+}

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pss_m/core/constants/style.dart';
 import 'package:pss_m/core/providers/api.provider.dart';
+import 'package:pss_m/util/date.dart';
 
 class TextFieldC extends StatelessWidget {
   final TextEditingController? controller;
@@ -38,7 +39,7 @@ class TextFieldC extends StatelessWidget {
     if (context != null) {
       showDatePicker(
         context: context,
-        initialDate: DateTime.now(),
+        initialDate: DateUtil.fromString(defaultValue),
         firstDate: DateTime(2021),
         lastDate: DateTime.now(),
       ).then((pickedDate) {

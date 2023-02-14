@@ -5,7 +5,6 @@ import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/form/radio.dart';
 import 'package:pss_m/core/form/text_field.dart';
 import 'package:pss_m/core/form/text_only.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
 import 'package:pss_m/interface/form/radio/radio_data.dart';
 import 'package:pss_m/widgets/layout/empty.dart';
 
@@ -17,7 +16,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final UserProvider _userProvider = Get.find();
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(
@@ -66,6 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 10),
                     RadioC<Gender>(
                       label: 'Gender',
+                      defaultValue: controller.genderValue,
                       options: [
                         IRadioData(label: "Male", value: Gender.MALE),
                         IRadioData(label: "Female", value: Gender.FEMALE),
@@ -78,6 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       label: "Birthday",
                       name: "birthday",
                       keyBoardType: TextInputType.datetime,
+                      defaultValue: controller.birthdayController.text,
                       context: context,
                     ),
                     const SizedBox(height: 30),
@@ -90,7 +90,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Theme.of(context).errorColor,
                             padding: const EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 30),
+                              vertical: 0,
+                              horizontal: 30,
+                            ),
                           ),
                           child: const Text("Clear"),
                         ),
@@ -99,7 +101,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           onPressed: controller.onSubmit,
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 30),
+                              vertical: 0,
+                              horizontal: 30,
+                            ),
                           ),
                           child: const Text("Save"),
                         ),

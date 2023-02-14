@@ -7,7 +7,6 @@ import 'package:pss_m/core/constants/store.dart';
 import 'package:pss_m/core/providers/api.provider.dart';
 import 'package:pss_m/core/providers/ui.provider.dart';
 import 'package:pss_m/core/providers/sharePreference.provider.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
 
 class ApiClient extends GetxService {
   final ApiProvider _apiProvider = Get.find();
@@ -33,7 +32,7 @@ class ApiClient extends GetxService {
             'Bearer ${preferenceHelper.authToken}';
       }
       //open loading
-      _uiProvider.setIsLoading = true;
+      // _uiProvider.setIsLoading = true;
 
       return handler.next(options);
     }, onResponse: (response, handler) async {
@@ -45,7 +44,7 @@ class ApiClient extends GetxService {
     }, onError: (DioError e, handler) async {
       // make the loading animation at least 500ms
       Timer(const Duration(milliseconds: 500), () {
-        _uiProvider.setIsLoading = false;
+        // _uiProvider.setIsLoading = false;
       });
 
       if (e.response?.statusCode == 400) {

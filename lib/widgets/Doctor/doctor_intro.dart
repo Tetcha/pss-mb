@@ -14,7 +14,7 @@ class DoctorIntro extends StatelessWidget {
         CircleAvatar(
           radius: 35,
           backgroundImage: NetworkImage(
-            doctor.photoUrl,
+            doctor.avatar ?? "",
           ),
         ),
         const SizedBox(width: 20),
@@ -31,7 +31,7 @@ class DoctorIntro extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 5),
-              Text(doctor.introduction)
+              Text(doctor.briefInfo ?? "")
             ],
           ),
         ),

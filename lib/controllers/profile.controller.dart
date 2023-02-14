@@ -3,12 +3,15 @@ import 'package:get/get.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Student/student.dart';
 import 'package:pss_m/core/providers/user.provider.dart';
+import 'package:pss_m/core/services/Toast.dart';
 import 'package:pss_m/core/services/student.auth.dart';
 import 'package:pss_m/interface/api/student/update_student/update_student.dart';
 
 class ProfileController extends GetxController {
   final UserProvider _userProvider = Get.find();
+  final ToastService _toastService = Get.find();
   final StudentServices _studentServices = Get.find();
+
   late final TextEditingController emailController =
       TextEditingController(text: _userProvider.currentUser.value.email);
   late final TextEditingController studentCodeController =
@@ -16,9 +19,9 @@ class ProfileController extends GetxController {
   late final TextEditingController phoneController =
       TextEditingController(text: _userProvider.currentUser.value.phone);
   late final TextEditingController birthdayController =
-      TextEditingController(text: _userProvider.currentUser.value.birthday);
+      TextEditingController(text: _userProvider.birthday);
 
-  Gender? genderValue;
+  late Gender? genderValue = _userProvider.currentUser.value.gender;
 
   String? get avatarUrl => _userProvider.userAvatarUrl;
 
@@ -29,7 +32,7 @@ class ProfileController extends GetxController {
   }
 
   onSubmit() async {
-    UpdateStudentPayload payload = new UpdateStudentPayload(
+    UpdateStudentPayload payload = UpdateStudentPayload(
       name: name,
       email: emailController.text,
       phone: phoneController.text,
@@ -39,7 +42,13 @@ class ProfileController extends GetxController {
     );
 
     Student? student = await _studentServices.updateUser(payload);
-    print("studet $student");
+
+    if (student == null) {
+      _toastService.showError("Update failed, please try again later!");
+    } else {
+      _toastService.showSuccess("Update success!");
+      _userProvider.updateUserInfo();
+    }
   }
 
   onGenderChange(Gender? value) {
