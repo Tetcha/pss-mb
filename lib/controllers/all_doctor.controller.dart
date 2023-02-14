@@ -20,7 +20,6 @@ class AllDoctorController extends GetxController {
   }
 
   void getAllDoctor() async {
-    print("calling api in page $_currentPage");
     FilterResponse<Doctor>? response = await _doctorService.getDoctorList(
         DoctorFilterPayload(currentPage: _currentPage, pageSize: 10));
 
@@ -50,7 +49,6 @@ class AllDoctorController extends GetxController {
   }
 
   Future<void> onLoadMore() async {
-    print("on load more");
     if (allDoctor.length >= countValue) {
       isEnd.value = true;
       return;
