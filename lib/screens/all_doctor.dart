@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/all_doctor.controller.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
-import 'package:loadmore/loadmore.dart';
 
 class AllDoctorScreen extends StatelessWidget {
   const AllDoctorScreen({super.key});
