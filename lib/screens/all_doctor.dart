@@ -61,11 +61,3 @@ class AllDoctorScreen extends StatelessWidget {
     );
   }
 }
-// ...controller.allDoctor.map((doctor) {
-//                   return Column(
-//                     children: [
-//                       DoctorIntro(doctor: doctor),
-//                       const SizedBox(height: 10),
-//                     ],
-//                   );
-//                 }).toList()
