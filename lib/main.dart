@@ -37,9 +37,9 @@ class _MyAppState extends State<MyApp> {
       title: 'PSS',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.blue,
         backgroundColor: Colors.grey[200],
-        primaryColorLight: Colors.pink,
+        primaryColorLight: Colors.blue,
         primaryColorDark: Colors.black54,
         textTheme: const TextTheme(
           labelSmall: TextStyle(fontSize: 8),

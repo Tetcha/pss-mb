@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pss_m/core/constants/style.dart';
-import 'package:pss_m/core/providers/api.provider.dart';
+import 'package:pss_m/core/form/field_wrapper.dart';
 import 'package:pss_m/util/date.dart';
 
 class TextFieldC extends StatelessWidget {
@@ -57,48 +56,74 @@ class TextFieldC extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ApiProvider apiController = Get.find();
-    final String error = apiController.errorDetails[name] ?? '';
-    return Column(
-      children: [
-        TextField(
-          enabled: !disabled,
-          controller: controller,
-          obscureText: isPassword,
-          keyboardType: keyBoardType == TextInputType.datetime
-              ? TextInputType.none
-              : keyBoardType,
-          onTap: keyBoardType == TextInputType.datetime
-              ? _presentDatePicker
-              : null,
-          decoration: InputDecoration(
-            // border: const UnderlineInputBorder(),
-            labelText: label,
-            labelStyle: TextStyle(
-              color: StyleTheme.formTitleColor,
-            ),
-            hintText: hintText,
-            prefixIcon: suffixIcon,
-            suffixIcon: keyBoardType == TextInputType.datetime
-                ? GestureDetector(
-                    onTap: _presentDatePicker,
-                    child:
-                        prefixIcon ?? const Icon(Icons.calendar_today_rounded),
-                  )
-                : prefixIcon,
+    return FieldWrapper(
+      name: name,
+      child: TextField(
+        enabled: !disabled,
+        controller: controller,
+        obscureText: isPassword,
+        keyboardType: keyBoardType == TextInputType.datetime
+            ? TextInputType.none
+            : keyBoardType,
+        onTap:
+            keyBoardType == TextInputType.datetime ? _presentDatePicker : null,
+        decoration: InputDecoration(
+          // border: const UnderlineInputBorder(),
+          labelText: label,
+          labelStyle: TextStyle(
+            color: StyleTheme.formTitleColor,
           ),
+          hintText: hintText,
+          prefixIcon: suffixIcon,
+          suffixIcon: keyBoardType == TextInputType.datetime
+              ? GestureDetector(
+                  onTap: _presentDatePicker,
+                  child: prefixIcon ?? const Icon(Icons.calendar_today_rounded),
+                )
+              : prefixIcon,
         ),
-        error != '' ? const SizedBox(height: 10) : const SizedBox.shrink(),
-        error != ''
-            ? Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  error,
-                  style: const TextStyle(color: Colors.red),
-                ),
-              )
-            : const SizedBox.shrink()
-      ],
+      ),
     );
+    // return Column(
+    //   children: [
+    //     TextField(
+    //       enabled: !disabled,
+    //       controller: controller,
+    //       obscureText: isPassword,
+    //       keyboardType: keyBoardType == TextInputType.datetime
+    //           ? TextInputType.none
+    //           : keyBoardType,
+    //       onTap: keyBoardType == TextInputType.datetime
+    //           ? _presentDatePicker
+    //           : null,
+    //       decoration: InputDecoration(
+    //         // border: const UnderlineInputBorder(),
+    //         labelText: label,
+    //         labelStyle: TextStyle(
+    //           color: StyleTheme.formTitleColor,
+    //         ),
+    //         hintText: hintText,
+    //         prefixIcon: suffixIcon,
+    //         suffixIcon: keyBoardType == TextInputType.datetime
+    //             ? GestureDetector(
+    //                 onTap: _presentDatePicker,
+    //                 child:
+    //                     prefixIcon ?? const Icon(Icons.calendar_today_rounded),
+    //               )
+    //             : prefixIcon,
+    //       ),
+    //     ),
+    //     error != '' ? const SizedBox(height: 10) : const SizedBox.shrink(),
+    //     error != ''
+    //         ? Align(
+    //             alignment: Alignment.topLeft,
+    //             child: Text(
+    //               error,
+    //               style: const TextStyle(color: Colors.red),
+    //             ),
+    //           )
+    //         : const SizedBox.shrink()
+    //   ],
+    // );
   }
 }

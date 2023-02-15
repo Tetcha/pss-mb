@@ -29,7 +29,8 @@ class UserProvider extends GetxController {
   LoginType? loginType;
   var currentUser = Rx<Student>(defaultUser);
   RxBool isLogin = false.obs;
-  String get birthday {
+  String? get birthday {
+    if (currentUser.value.birthday == null) return null;
     return DateUtil.toText(DateTime.parse(currentUser.value.birthday ?? ""));
   }
 

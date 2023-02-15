@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class ApiProvider extends GetxController {
   RxBool isGlobalLoading = false.obs;
   RxBool isLocalLoading = false.obs;
-  RxMap<String, String> errorDetails = RxMap<String, String>();
+  RxMap<String, String> errorDetails = RxMap<String, String>({});
   bool isError = false;
   String? message;
   String? errorMessage;
