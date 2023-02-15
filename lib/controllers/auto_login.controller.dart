@@ -8,7 +8,6 @@ class AutoLoginController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     (() async {
       Student? student = await _userProvider.getCurrentUser();

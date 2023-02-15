@@ -3,22 +3,24 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pss_m/util/date.dart';
 
-class TextFieldController extends GetxController {
-  void presentDatePicker(dynamic context, dynamic defaultValue,
+class TextFieldController<T> extends GetxController {
+  void presentDatePicker(BuildContext? context, dynamic defaultValue,
       TextEditingController? controller) {
     if (context != null) {
       showDatePicker(
         context: context,
-        initialDate: DateUtil.fromString(defaultValue),
-        firstDate: DateTime(2021),
-        lastDate: DateTime.now(),
+        initialDate: defaultValue == ''
+            ? DateTime.now()
+            : DateUtil.fromString(defaultValue),
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2077),
       ).then((pickedDate) {
         if (pickedDate == null) {
           return;
         }
-
         controller?.text = DateFormat.yMd().format(pickedDate);
       });
+      update();
     } else {
       // ignore: avoid_print
       print('context is null');

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/controllers/field_wrapper.dart';
-import 'package:pss_m/core/providers/api.provider.dart';
+import 'package:pss_m/controllers/form/field_wrapper.dart';
 
 class FieldWrapper extends StatelessWidget {
-  final Widget child;
   final String name;
+  final Widget child;
   const FieldWrapper({super.key, required this.child, required this.name});
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,6 @@ class FieldWrapper extends StatelessWidget {
         children: [
           child,
           Obx(() {
-            print(controller.apiProvider.errorDetails[name]);
             return controller.apiProvider.errorDetails[name] != null
                 ? const SizedBox(height: 10)
                 : const SizedBox.shrink();

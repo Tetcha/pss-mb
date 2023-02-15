@@ -64,6 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     const SizedBox(height: 10),
                     RadioC<Gender>(
                       label: 'Gender',
+                      name: 'gender',
                       defaultValue: controller.genderValue,
                       options: [
                         IRadioData(label: "Male", value: Gender.MALE),

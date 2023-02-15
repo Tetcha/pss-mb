@@ -92,6 +92,9 @@ class UserProvider extends GetxController {
         _sharedPreferenceProvider.removeAuthToken();
       }
       return null;
+    } catch (e) {
+      print("error $e");
+      return null;
     }
   }
 }

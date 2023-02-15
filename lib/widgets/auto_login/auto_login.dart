@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/auto_login.controller.dart';
 import 'package:pss_m/core/providers/user.provider.dart';
+import 'package:pss_m/widgets/Redirect/redirect_to_login.dart';
 
 class AutoLogin extends StatelessWidget {
   final Widget children;
@@ -14,11 +15,7 @@ class AutoLogin extends StatelessWidget {
     return GetBuilder<AutoLoginController>(
       init: AutoLoginController(),
       builder: (controller) => Obx(
-        () => _userProvider.isLogin.value
-            ? children
-            : const Center(
-                child: Text('Unauthorize'),
-              ),
+        () => _userProvider.isLogin.value ? children : const RedirectToLogin(),
       ),
     );
   }

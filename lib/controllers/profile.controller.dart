@@ -43,9 +43,7 @@ class ProfileController extends GetxController {
 
     Student? student = await _studentServices.updateUser(payload);
 
-    if (student == null) {
-      _toastService.showError("Update failed, please try again later!");
-    } else {
+    if (student != null) {
       _toastService.showSuccess("Update success!");
       _userProvider.updateUserInfo();
     }

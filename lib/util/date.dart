@@ -8,7 +8,7 @@ class DateUtil {
   }
 
   static String toText(DateTime date) {
-    var outputFormat = DateFormat('dd/MM/yyyy');
-    return outputFormat.format(date);
+    var outputFormat = DateFormat('MM/dd/yyyy');
+    return outputFormat.format(date.toLocal());
   }
 }
