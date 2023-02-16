@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/constants/store.dart';
-import 'package:pss_m/core/providers/api.provider.dart';
-import 'package:pss_m/core/providers/ui.provider.dart';
-import 'package:pss_m/core/providers/sharePreference.provider.dart';
+import 'package:pss_m/providers/api.provider.dart';
+import 'package:pss_m/providers/ui.provider.dart';
+import 'package:pss_m/providers/sharePreference.provider.dart';
 
 class ApiClient extends GetxService {
   final ApiProvider _apiProvider = Get.find();

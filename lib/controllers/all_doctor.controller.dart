@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
-import 'package:pss_m/core/services/doctor.auth.dart';
+import 'package:pss_m/services/doctor.auth.dart';
 import 'package:pss_m/interface/api/common.dart';
 import 'package:pss_m/interface/api/doctor/doctor_filter/doctor_filter.dart';
 

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
+import 'package:pss_m/providers/user.provider.dart';
 
 class UserWelcomeController extends GetxController {
   final UserProvider _userProvider = Get.find();

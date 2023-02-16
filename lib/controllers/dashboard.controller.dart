@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
+import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/screens/all_doctor.dart';
 import 'package:pss_m/screens/home.dart';
 import 'package:pss_m/screens/setting.dart';

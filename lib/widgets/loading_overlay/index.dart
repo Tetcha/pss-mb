@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/ui.provider.dart';
+import 'package:pss_m/providers/ui.provider.dart';
 
 class LoadingOverlay extends StatefulWidget {
   const LoadingOverlay({Key? key, required this.child}) : super(key: key);

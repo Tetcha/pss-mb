@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:pss_m/core/api/auth.api.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Student/student.dart';
-import 'package:pss_m/core/providers/sharePreference.provider.dart';
-import 'package:pss_m/core/services/facebook.auth.dart';
-import 'package:pss_m/core/services/google.auth.dart';
+import 'package:pss_m/providers/sharePreference.provider.dart';
+import 'package:pss_m/services/facebook.auth.dart';
+import 'package:pss_m/services/google.auth.dart';
 import 'package:pss_m/util/date.dart';
 
 const defaultUser = Student(

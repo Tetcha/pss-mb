@@ -1,19 +1,17 @@
 import 'dart:async';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/injection/index.dart';
+import 'package:pss_m/core/config/firebase.dart';
+import 'package:pss_m/core/config/injection.dart';
 import 'package:pss_m/screens/dashboard.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:pss_m/services/notification.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await configFirebase();
   await configureDependencies();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   return runZonedGuarded(() async {
     runApp(const MyApp());
@@ -31,8 +29,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  NotificationService notificationService = Get.find();
   @override
   Widget build(BuildContext context) {
+    notificationService.init();
     return GetMaterialApp(
       title: 'PSS',
       debugShowCheckedModeBanner: false,

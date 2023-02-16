@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/api.provider.dart';
+import 'package:pss_m/providers/api.provider.dart';
 
 class FieldWrapperController extends GetxController {
   late ApiProvider apiProvider;

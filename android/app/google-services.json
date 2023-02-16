@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "955612507216",
+    "firebase_url": "https://psych-support-system-37213-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "psych-support-system-37213",
     "storage_bucket": "psych-support-system-37213.appspot.com"
   },
@@ -39,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "955612507216-bcruu11vbcquj2fia2ce80u0hasmg6ib.apps.googleusercontent.com",
+              "client_id": "955612507216-53oi53bdgiq4nj9n5cb5fqi4m8eq75eh.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.pssMobile"
+                "bundle_id": "com.example.pssm"
               }
             }
           ]

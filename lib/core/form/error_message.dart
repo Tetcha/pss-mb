@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/api.provider.dart';
+import 'package:pss_m/providers/api.provider.dart';
 
 class ErrorMessage extends StatelessWidget {
   const ErrorMessage({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/sharePreference.provider.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
+import 'package:pss_m/providers/sharePreference.provider.dart';
+import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/interface/setting/setting.dart';
 import 'package:pss_m/screens/login.dart';
 import 'package:pss_m/screens/profile.dart';

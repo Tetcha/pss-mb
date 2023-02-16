@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pss_m/core/models/Student/student.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
+import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/screens/login.dart';
 
 class AutoLoginController extends GetxController {

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/providers/user.provider.dart';
+import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/screens/dashboard.dart';
 
 class LoginController extends GetxController {
