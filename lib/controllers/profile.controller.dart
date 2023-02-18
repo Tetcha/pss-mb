@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Student/student.dart';
 import 'package:pss_m/providers/user.provider.dart';
-import 'package:pss_m/services/Toast.dart';
-import 'package:pss_m/services/student.auth.dart';
+import 'package:pss_m/services/Toast.service.dart';
+import 'package:pss_m/services/student.service.dart';
 import 'package:pss_m/interface/api/student/update_student/update_student.dart';
 
 class ProfileController extends GetxController {

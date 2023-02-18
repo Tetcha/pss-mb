@@ -8,12 +8,12 @@ import 'package:pss_m/providers/sharePreference.provider.dart';
 import 'package:pss_m/providers/ui.provider.dart';
 import 'package:pss_m/providers/user.provider.dart';
 
-import 'package:pss_m/services/Toast.dart';
-import 'package:pss_m/services/doctor.auth.dart';
-import 'package:pss_m/services/facebook.auth.dart';
-import 'package:pss_m/services/google.auth.dart';
-import 'package:pss_m/services/notification.dart';
-import 'package:pss_m/services/student.auth.dart';
+import 'package:pss_m/services/Toast.service.dart';
+import 'package:pss_m/services/doctor.service.dart';
+import 'package:pss_m/services/facebook.service.dart';
+import 'package:pss_m/services/google.service.dart';
+import 'package:pss_m/services/notification.service.dart';
+import 'package:pss_m/services/student.service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // config global dependencies

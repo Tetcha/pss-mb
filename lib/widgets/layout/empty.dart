@@ -12,12 +12,16 @@ class EmptyLayout extends StatelessWidget {
         title: const Text('Psych System'),
       ),
       body: SafeArea(
-          child: RepaintBoundary(
-        key: const Key("global key"),
-        child: SingleChildScrollView(
-          child: children,
+        child: RepaintBoundary(
+          key: const Key("global key"),
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: SingleChildScrollView(
+              child: children,
+            ),
+          ),
         ),
-      )),
+      ),
     );
   }
 }

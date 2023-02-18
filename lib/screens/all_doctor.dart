@@ -50,6 +50,7 @@ class AllDoctorScreen extends StatelessWidget {
 
                         return DoctorIntro(
                           doctor: controller.allDoctor[index],
+                          onPressed: () => controller.onDoctorTap(),
                         );
                       },
                     ),

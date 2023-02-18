@@ -6,13 +6,26 @@ import 'package:get/get.dart';
 import 'package:pss_m/core/config/firebase.dart';
 import 'package:pss_m/core/config/injection.dart';
 import 'package:pss_m/screens/dashboard.dart';
-import 'package:pss_m/services/notification.dart';
+import 'package:pss_m/services/notification.service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configFirebase();
   await configureDependencies();
-
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+  await FirebaseMessaging.instance.subscribeToTopic('global');
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    print('Permission granted');
+  }
   return runZonedGuarded(() async {
     runApp(const MyApp());
   }, (error, stack) {

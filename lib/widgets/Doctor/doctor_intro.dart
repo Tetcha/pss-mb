@@ -4,7 +4,8 @@ import 'package:pss_m/core/models/Doctor/doctor.dart';
 
 class DoctorIntro extends StatelessWidget {
   final Doctor doctor;
-  const DoctorIntro({super.key, required this.doctor});
+  final VoidCallback? onPressed;
+  const DoctorIntro({super.key, required this.doctor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class DoctorIntro extends StatelessWidget {
             ],
           ),
         ),
-        ElevatedButton(onPressed: (() => {}), child: const Text("Book"))
+        ElevatedButton(onPressed: onPressed, child: const Text("Book"))
       ],
     );
   }
