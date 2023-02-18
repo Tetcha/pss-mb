@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/config/firebase.dart';
 import 'package:pss_m/core/config/injection.dart';
+import 'package:pss_m/core/constants/theme.dart';
 import 'package:pss_m/screens/dashboard.dart';
 import 'package:pss_m/services/notification.service.dart';
 
@@ -49,16 +50,7 @@ class _MyAppState extends State<MyApp> {
     return GetMaterialApp(
       title: 'PSS',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        backgroundColor: Colors.grey[200],
-        primaryColorLight: Colors.blue,
-        primaryColorDark: Colors.black54,
-        textTheme: const TextTheme(
-          labelSmall: TextStyle(fontSize: 8),
-        ),
-        fontFamily: 'NunitoSans',
-      ),
+      theme: AppTheme.getTheme(),
       home: const DashBoardLayout(),
     );
   }

@@ -48,7 +48,7 @@ class _IconLabelWidgetState extends State<IconLabelWidget> {
           onTapCancel: _handleTapCancel,
           onTap: widget.onTap,
           child: Container(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
               color: isPressed
                   ? Theme.of(context).primaryColor.withOpacity(0.5)
@@ -62,12 +62,12 @@ class _IconLabelWidgetState extends State<IconLabelWidget> {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
         Text(
           widget.label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18.0,
           ),
         ),

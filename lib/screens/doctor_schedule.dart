@@ -10,7 +10,7 @@ class DoctorScheduleScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<DoctorScheduleController>(
       init: DoctorScheduleController(),
-      builder: (controller) => Calendar(),
+      builder: (controller) => DoctorSchedule(),
     );
   }
 }
