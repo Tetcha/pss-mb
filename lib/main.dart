@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/config/firebase.dart';
 import 'package:pss_m/core/config/injection.dart';
@@ -23,10 +24,19 @@ Future<void> main() async {
     provisional: false,
     sound: true,
   );
+  // join global channel for all users including unauthorized users
   await FirebaseMessaging.instance.subscribeToTopic('global');
   if (settings.authorizationStatus == AuthorizationStatus.authorized) {
     print('Permission granted');
   }
+
+  SystemChrome.setPreferredOrientations(<DeviceOrientation>[
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   return runZonedGuarded(() async {
     runApp(const MyApp());
   }, (error, stack) {

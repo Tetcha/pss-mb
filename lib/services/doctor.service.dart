@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pss_m/core/api/doctor.api.dart';
+import 'package:pss_m/api/doctor.api.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/interface/api/common.dart';
 import 'package:pss_m/interface/api/doctor/doctor_filter/doctor_filter.dart';

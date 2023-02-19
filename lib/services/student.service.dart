@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pss_m/core/api/student.api.dart';
+import 'package:pss_m/api/student.api.dart';
 import 'package:pss_m/core/models/Student/student.dart';
 import 'package:pss_m/interface/api/student/update_student/update_student.dart';
 

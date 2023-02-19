@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/api/auth.api.dart';
+import 'package:pss_m/api/auth.api.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:pss_m/interface/api/auth/login/login.api.dart';
 

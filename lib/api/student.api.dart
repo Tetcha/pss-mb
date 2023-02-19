@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:pss_m/core/api/config.dart' show ApiClient;
+import 'package:pss_m/api/config.dart' show ApiClient;
 import 'package:pss_m/interface/api/student/update_student/update_student.dart';
 
 class StudentApi extends GetxService {

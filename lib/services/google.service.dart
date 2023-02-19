@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pss_m/core/api/auth.api.dart';
+import 'package:pss_m/api/auth.api.dart';
 import 'package:pss_m/interface/api/auth/login/login.api.dart';
 
 class GoogleService extends GetxService {
@@ -27,17 +28,17 @@ class GoogleService extends GetxService {
   }
 
   Future<String?> login() async {
-    // var googleAccountResponse = await _googleSignIn.signIn();
-    // if (googleAccountResponse == null) {
-    //   Get.snackbar("Error", "Something wrong happens, please try again later!",
-    //       backgroundColor: Colors.green, colorText: Colors.white);
-    //   throw Exception('Google Sign In Failed');
-    // }
+    var googleAccountResponse = await _googleSignIn.signIn();
+    if (googleAccountResponse == null) {
+      Get.snackbar("Error", "Something wrong happens, please try again later!",
+          backgroundColor: Colors.green, colorText: Colors.white);
+      throw Exception('Google Sign In Failed');
+    }
 
-    // // set value
-    // googleAccount.value = googleAccountResponse;
-    // googleAuth.value = await googleAccountResponse.authentication;
-    // print(googleAuth.value?.idToken);
+    // set value
+    googleAccount.value = googleAccountResponse;
+    googleAuth.value = await googleAccountResponse.authentication;
+    print(googleAuth.value?.idToken);
     // store access token
     var accessToken = await _authApi.login(LoginApiPayload(
       accessToken: googleAuth.value?.idToken ??

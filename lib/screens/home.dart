@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/home.controller.dart';
+import 'package:pss_m/screens/room/join_room_page.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
 import 'package:pss_m/widgets/carousel/carousel.dart';
 import 'package:pss_m/widgets/title/title.dart';
@@ -38,7 +39,9 @@ class HomeScreen extends StatelessWidget {
                 }).toList(),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => JoinRoomPage());
+                    },
                     child: const Text("See more"),
                   ),
                 )

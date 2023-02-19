@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
-import 'package:pss_m/core/api/config.dart' show ApiClient;
+import 'package:pss_m/api/config.dart' show ApiClient;
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/interface/api/common.dart';
 import 'package:pss_m/interface/api/doctor/doctor_filter/doctor_filter.dart';

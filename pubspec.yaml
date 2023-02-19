@@ -47,6 +47,10 @@ dependencies:
   firebase_core: ^2.5.0
   firebase_analytics: ^10.1.1
   firebase_messaging: ^14.2.2
+  twilio_programmable_video: ^1.0.1
+  flutter_bloc: ^8.1.2
+  uuid: ^3.0.7
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:

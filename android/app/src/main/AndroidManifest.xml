@@ -2,13 +2,16 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.example.pss_m"
 >
-
 	<uses-permission android:name="android.permission.INTERNET" />
 	<queries>
 		<package android:name="com.facebook.katana" />
-
 		<provider android:authorities="com.facebook.katana.provider.PlatformProvider" />
 	</queries>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.RECORD_AUDIO" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 	<application
 		android:label="pss_m"
 		android:name="${applicationName}"

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/core/api/auth.api.dart';
+import 'package:pss_m/api/auth.api.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Student/student.dart';
 import 'package:pss_m/providers/sharePreference.provider.dart';

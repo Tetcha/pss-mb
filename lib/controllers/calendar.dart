@@ -80,7 +80,7 @@ class CalendarController extends GetxController {
 
   List<Event> getEventsForDay(DateTime day) {
     // Implementation example
-    return kEvents[day] ?? [];
+    return kEvents[day]?.take(2).toList() ?? [];
   }
 
   void onFormatChange(CalendarFormat format) {
