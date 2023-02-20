@@ -32,7 +32,9 @@ class HomeScreen extends StatelessWidget {
                 ...controller.availableDoctor.map((doctor) {
                   return Column(
                     children: [
-                      DoctorIntro(doctor: doctor),
+                      DoctorIntro(
+                          doctor: doctor,
+                          onPressed: () => controller.onDoctorTap(doctor.id)),
                       const SizedBox(height: 10),
                     ],
                   );

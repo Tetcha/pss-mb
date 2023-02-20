@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:pss_m/controllers/doctor_schedule.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
-import 'package:pss_m/screens/doctor_schedule.dart';
 import 'package:pss_m/services/doctor.service.dart';
 import 'package:pss_m/interface/api/common.dart';
 import 'package:pss_m/interface/api/doctor/doctor_filter/doctor_filter.dart';
@@ -58,7 +58,9 @@ class AllDoctorController extends GetxController {
     getAllDoctor();
   }
 
-  void onDoctorTap() {
-    Get.to(() => const DoctorScheduleScreen());
+  void onDoctorTap(String doctorId) {
+    Get.to(() => DoctorScheduleScreen(
+          doctorId: doctorId,
+        ));
   }
 }

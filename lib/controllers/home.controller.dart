@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pss_m/controllers/doctor_schedule.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/interface/carousel/carousel_item.dart';
@@ -61,4 +62,10 @@ class HomeController extends GetxController {
     doctor,
     doctor
   ];
+
+  void onDoctorTap(String doctorId) {
+    Get.to(() => DoctorScheduleScreen(
+          doctorId: doctorId,
+        ));
+  }
 }

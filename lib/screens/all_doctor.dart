@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/all_doctor.controller.dart';
+import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
 
 class AllDoctorScreen extends StatelessWidget {
@@ -11,8 +12,8 @@ class AllDoctorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double statusBarHeight = MediaQuery.of(context).padding.top;
-    final double appBarHeight = kToolbarHeight;
-    final double bottomNavigationBarHeight = kBottomNavigationBarHeight;
+    const double appBarHeight = kToolbarHeight;
+    const double bottomNavigationBarHeight = kBottomNavigationBarHeight;
 
     final double availableHeight = screenHeight -
         statusBarHeight -
@@ -47,10 +48,11 @@ class AllDoctorScreen extends StatelessWidget {
                             child: CupertinoActivityIndicator(),
                           );
                         }
-
+                        Doctor currentDoctor = controller.allDoctor[index];
                         return DoctorIntro(
-                          doctor: controller.allDoctor[index],
-                          onPressed: () => controller.onDoctorTap(),
+                          doctor: currentDoctor,
+                          onPressed: () =>
+                              controller.onDoctorTap(currentDoctor.id),
                         );
                       },
                     ),
