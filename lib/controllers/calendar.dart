@@ -51,11 +51,16 @@ class CalendarController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print("on init");
     kEvents.addAll(convertSlotsToEvents(data));
     selectedDay = focusedDay;
     selectedEvents = ValueNotifier(getEventsForDay(selectedDay!));
     update();
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
   }
 
   @override

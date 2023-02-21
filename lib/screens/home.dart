@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       DoctorIntro(
                           doctor: doctor,
-                          onPressed: () => controller.onDoctorTap(doctor.id)),
+                          onPressed: () => controller.onDoctorTap(doctor)),
                       const SizedBox(height: 10),
                     ],
                   );

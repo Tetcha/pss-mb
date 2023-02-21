@@ -52,7 +52,7 @@ class AllDoctorScreen extends StatelessWidget {
                         return DoctorIntro(
                           doctor: currentDoctor,
                           onPressed: () =>
-                              controller.onDoctorTap(currentDoctor.id),
+                              controller.onDoctorTap(currentDoctor),
                         );
                       },
                     ),
