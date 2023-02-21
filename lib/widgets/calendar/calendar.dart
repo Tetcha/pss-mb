@@ -82,7 +82,8 @@ class Calendar extends StatelessWidget {
                               ),
                               trailing: isAvailable
                                   ? ElevatedButton(
-                                      onPressed: () {},
+                                      onPressed: () => controller
+                                          .onBookingPressed(currentValue),
                                       child: const Text("Book"))
                                   : null,
                             ),

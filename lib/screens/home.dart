@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/home.controller.dart';
+import 'package:pss_m/screens/demo.dart';
 import 'package:pss_m/screens/room/join_room_page.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
 import 'package:pss_m/widgets/carousel/carousel.dart';
@@ -18,6 +19,11 @@ class HomeScreen extends StatelessWidget {
           Carousel(
             data: controller.carouselData,
           ),
+          ElevatedButton(
+              onPressed: () {
+                Get.to(() => CompleteForm());
+              },
+              child: const Text("View demo form")),
           Container(
             padding: const EdgeInsets.symmetric(
               horizontal: 10,

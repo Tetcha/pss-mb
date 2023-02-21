@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/interface/api/slot/slot.dart';
 import 'package:pss_m/interface/calendar/calendar.dart';
+import 'package:pss_m/screens/book_form.dart';
 import 'package:pss_m/util/date.dart';
 import 'package:pss_m/widgets/title/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -30,7 +31,7 @@ class CalendarController extends GetxController {
           slotId: slot.id,
           startTime: slot.startTime,
           endTime: slot.endTime,
-          // date: slot.date,
+          date: slot.date,
           status: slot.status,
         ));
       } else {
@@ -39,7 +40,7 @@ class CalendarController extends GetxController {
             slotId: slot.id,
             startTime: slot.startTime,
             endTime: slot.endTime,
-            // date: slot.date,
+            date: slot.date,
             status: slot.status,
           )
         ];
@@ -56,12 +57,6 @@ class CalendarController extends GetxController {
   }
 
   @override
-  void onInit() {
-    super.onInit();
-    print("on init calendar controller");
-  }
-
-  @override
   void dispose() {
     selectedEvents.dispose();
     super.dispose();
@@ -69,7 +64,6 @@ class CalendarController extends GetxController {
 
   List<Event> getEventsForDay(DateTime day) {
     // Implementation example
-    print("getEventsForDay ${kEvents.length}");
     return kEvents[day]?.toList() ?? [];
   }
 
@@ -91,5 +85,9 @@ class CalendarController extends GetxController {
       selectedEvents.value = getEventsForDay(newSelectedDay);
     }
     update();
+  }
+
+  void onBookingPressed(Event event) {
+    Get.to(() => BookFormScreen(currentEvent: event));
   }
 }
