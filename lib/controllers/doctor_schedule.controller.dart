@@ -42,11 +42,20 @@ class DoctorScheduleController extends GetxController {
     super.onReady();
     List<Slot>? slots = await _doctorService.getDoctorSlotsById(
       doctorId: doctor.id,
-      from: "2020-01-01T00:00:00.000Z",
+      from: "2023-01-01T00:00:00.000Z",
       to: "2077-01-01T00:00:00.000Z",
     );
     if (slots != null) {
-      data.addAll(slots);
+      // data.add(Slot(
+      //     id: "1",
+      //     createAt: "",
+      //     updateAt: "",
+      //     startTime: "00:00",
+      //     endTime: "1:00",
+      //     date: DateUtil.toText(DateTime.now()),
+      //     status: true,
+      //     doctor: doctor));
+      // data.addAll(slots);
       update();
     }
   }

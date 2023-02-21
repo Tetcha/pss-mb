@@ -10,7 +10,6 @@ import 'package:table_calendar/table_calendar.dart';
 
 class CalendarController extends GetxController {
   List<Slot> data;
-  CalendarController({required this.data});
 
   late final ValueNotifier<List<Event>> selectedEvents;
   CalendarFormat calendarFormat = CalendarFormat.month;
@@ -48,9 +47,9 @@ class CalendarController extends GetxController {
     return data;
   }
 
-  @override
-  void onInit() {
-    super.onInit();
+  CalendarController({required this.data}) {
+    print("add new Data ${data[0].toJson()}");
+    kEvents.clear();
     kEvents.addAll(convertSlotsToEvents(data));
     selectedDay = focusedDay;
     selectedEvents = ValueNotifier(getEventsForDay(selectedDay!));
@@ -58,9 +57,9 @@ class CalendarController extends GetxController {
   }
 
   @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
+  void onInit() {
+    super.onInit();
+    print("on init calendar controller");
   }
 
   @override
@@ -76,9 +75,7 @@ class CalendarController extends GetxController {
 
   void onFormatChange(CalendarFormat format) {
     if (calendarFormat != format) {
-      // setState(() {
       calendarFormat = format;
-      // });
     }
     update();
   }

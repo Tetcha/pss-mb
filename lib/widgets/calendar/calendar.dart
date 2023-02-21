@@ -45,6 +45,7 @@ class Calendar extends StatelessWidget {
             },
           ),
           const SizedBox(height: 8.0),
+          Text("${controller.data.length}"),
           Expanded(
             child: ValueListenableBuilder<List<Event>>(
               valueListenable: controller.selectedEvents,
