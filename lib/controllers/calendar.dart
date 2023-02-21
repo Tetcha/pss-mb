@@ -23,13 +23,14 @@ class CalendarController extends GetxController {
   Map<DateTime, List<Event>> convertSlotsToEvents(List<Slot> slots) {
     Map<DateTime, List<Event>> data = {};
     slots.forEach((slot) {
-      DateTime date = DateUtil.fromString(slot.date);
+      DateTime date = DateUtil.serverStringToDate(slot.date);
+
       if (data.containsKey(date)) {
         data[date]!.add(Event(
           slotId: slot.id,
           startTime: slot.startTime,
           endTime: slot.endTime,
-          date: slot.date,
+          // date: slot.date,
           status: slot.status,
         ));
       } else {
@@ -38,7 +39,7 @@ class CalendarController extends GetxController {
             slotId: slot.id,
             startTime: slot.startTime,
             endTime: slot.endTime,
-            date: slot.date,
+            // date: slot.date,
             status: slot.status,
           )
         ];
@@ -48,8 +49,6 @@ class CalendarController extends GetxController {
   }
 
   CalendarController({required this.data}) {
-    print("add new Data ${data[0].toJson()}");
-    kEvents.clear();
     kEvents.addAll(convertSlotsToEvents(data));
     selectedDay = focusedDay;
     selectedEvents = ValueNotifier(getEventsForDay(selectedDay!));
@@ -70,12 +69,15 @@ class CalendarController extends GetxController {
 
   List<Event> getEventsForDay(DateTime day) {
     // Implementation example
-    return kEvents[day]?.take(2).toList() ?? [];
+    print("getEventsForDay ${kEvents.length}");
+    return kEvents[day]?.toList() ?? [];
   }
 
   void onFormatChange(CalendarFormat format) {
     if (calendarFormat != format) {
+      // setState(() {
       calendarFormat = format;
+      // });
     }
     update();
   }

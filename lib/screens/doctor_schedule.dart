@@ -15,7 +15,9 @@ class DoctorScheduleScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text("${controller.doctor.name} schedule"),
         ),
-        body: Calendar(data: controller.data),
+        body: controller.isFetchedData
+            ? Calendar(data: controller.data)
+            : const Center(child: CircularProgressIndicator()),
       ),
     );
   }

@@ -10,4 +10,14 @@ class DateUtil {
     var outputFormat = DateFormat('MM/dd/yyyy');
     return outputFormat.format(date.toLocal());
   }
+
+  static DateTime serverStringToDate(String date) {
+    return DateTime.parse(date);
+  }
+
+  static String serverStringToText(String date) {
+    DateTime dateTime = serverStringToDate(date);
+    var outputFormat = DateFormat('MM/dd/yyyy');
+    return outputFormat.format(dateTime.toLocal());
+  }
 }
