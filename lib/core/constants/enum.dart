@@ -4,7 +4,9 @@ enum Gender {
   @JsonValue('MALE')
   MALE,
   @JsonValue('FEMALE')
-  FEMALE
+  FEMALE,
+  @JsonValue('OTHERS')
+  OTHERS
 }
 
 enum LoginType {

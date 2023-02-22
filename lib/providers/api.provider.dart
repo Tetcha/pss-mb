@@ -27,4 +27,9 @@ class ApiProvider extends GetxController {
   String? getErrorByField(String field) {
     return errorDetails[field];
   }
+
+  void resetErrorMessage() {
+    errorDetails.value = {};
+    errorMessage = null;
+  }
 }

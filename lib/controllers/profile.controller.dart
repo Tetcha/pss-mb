@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Student/student.dart';
+import 'package:pss_m/providers/api.provider.dart';
 import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/services/Toast.service.dart';
 import 'package:pss_m/services/student.service.dart';
@@ -9,6 +10,7 @@ import 'package:pss_m/interface/api/student/update_student/update_student.dart';
 
 class ProfileController extends GetxController {
   final UserProvider _userProvider = Get.find();
+  final ApiProvider _apiProvider = Get.find();
   final ToastService _toastService = Get.find();
   final StudentServices _studentServices = Get.find();
 
@@ -24,7 +26,7 @@ class ProfileController extends GetxController {
   late Gender? genderValue = _userProvider.currentUser.value.gender;
 
   String? get avatarUrl => _userProvider.userAvatarUrl;
-
+  String? get birthday => _userProvider.birthday;
   String get name => _userProvider.currentUser.value.name;
 
   onClear() {
@@ -44,6 +46,7 @@ class ProfileController extends GetxController {
     Student? student = await _studentServices.updateUser(payload);
 
     if (student != null) {
+      _apiProvider.resetErrorMessage();
       _toastService.showSuccess("Update success!");
       _userProvider.updateUserInfo();
     }
