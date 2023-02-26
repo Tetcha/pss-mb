@@ -21,6 +21,7 @@ class DoctorScheduleController extends GetxController {
       from: "2023-01-01T00:00:00.000Z",
       to: "2077-01-01T00:00:00.000Z",
     );
+
     if (slots != null) {
       data.addAll(slots);
 

@@ -5,7 +5,7 @@ import 'package:pss_m/controllers/profile.controller.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/form/date_field.dart';
 import 'package:pss_m/core/form/radio_field.dart';
-import 'package:pss_m/core/form/text_field_copy.dart';
+import 'package:pss_m/core/form/text_field.dart';
 import 'package:pss_m/util/date.dart';
 import 'package:pss_m/widgets/layout/empty.dart';
 
@@ -44,26 +44,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   const SizedBox(height: 10),
-                  TextFieldCopy(
+                  TextFieldC(
                     controller: _.emailController,
                     name: "email",
                     label: 'Email',
                   ),
                   const SizedBox(height: 10),
-                  TextFieldCopy(
+                  TextFieldC(
                     initialValue: _.name,
                     name: "name",
                     label: 'Name',
                     disabled: true,
                   ),
-                  const SizedBox(height: 10),
-                  TextFieldCopy(
+                  TextFieldC(
                     controller: _.studentCodeController,
                     label: "Student Code",
                     name: "studentCode",
                   ),
                   const SizedBox(height: 10),
-                  TextFieldCopy(
+                  TextFieldC(
                     controller: _.phoneController,
                     label: "Phone",
                     name: "phone",
@@ -73,6 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onChanged: _.onGenderChange,
                     label: "Gender",
                     name: "gender",
+                    initialValue: _.genderValue,
                     options: const [
                       FormBuilderFieldOption(
                         value: Gender.MALE,

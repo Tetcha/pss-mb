@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/login.controller.dart';
 import 'package:pss_m/core/form/error_message.dart';
-import 'package:pss_m/core/form/text_field_copy.dart';
+import 'package:pss_m/core/form/text_field.dart';
 import 'package:pss_m/widgets/layout/empty.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -50,13 +50,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 10),
-                      TextFieldCopy(
+                      TextFieldC(
                         controller: controller.usernameController,
                         label: 'Username',
                         name: 'username',
                       ),
                       const SizedBox(height: 10),
-                      TextFieldCopy(
+                      TextFieldC(
                         controller: controller.passwordController,
                         label: 'Password',
                         isPassword: true,

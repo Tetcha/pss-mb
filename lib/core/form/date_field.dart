@@ -13,6 +13,7 @@ class DateField extends StatelessWidget {
   final Widget? suffixIcon;
   final TimeOfDay initialTime;
   late ApiProvider apiProvider;
+  final bool disabled;
   DateField({
     super.key,
     this.controller,
@@ -23,6 +24,7 @@ class DateField extends StatelessWidget {
     required this.labelText,
     this.suffixIcon,
     this.initialTime = const TimeOfDay(hour: 8, minute: 0),
+    this.disabled = false,
   }) {
     apiProvider = Get.find();
   }
@@ -33,6 +35,7 @@ class DateField extends StatelessWidget {
     return Obx(
       () => FormBuilderDateTimePicker(
         controller: controller,
+        enabled: !disabled,
         name: name,
         initialEntryMode: initialEntryMode,
         initialValue: initialValue,

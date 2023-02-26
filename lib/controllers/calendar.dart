@@ -25,14 +25,16 @@ class CalendarController extends GetxController {
     Map<DateTime, List<Event>> data = {};
     slots.forEach((slot) {
       DateTime date = DateUtil.serverStringToDate(slot.date);
-
+      // NOTE: if the slots have booking is more than 1
+      // it will be shown as unavailable (because someone has booked it)
       if (data.containsKey(date)) {
         data[date]!.add(Event(
           slotId: slot.id,
           startTime: slot.startTime,
           endTime: slot.endTime,
           date: slot.date,
-          status: slot.status,
+          status: slot.booking.isEmpty ? true : false,
+          doctor: slot.doctor,
         ));
       } else {
         data[date] = [
@@ -41,7 +43,8 @@ class CalendarController extends GetxController {
             startTime: slot.startTime,
             endTime: slot.endTime,
             date: slot.date,
-            status: slot.status,
+            status: slot.booking.isEmpty ? true : false,
+            doctor: slot.doctor,
           )
         ];
       }

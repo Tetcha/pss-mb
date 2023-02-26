@@ -13,8 +13,11 @@ Slot _$SlotFromJson(Map<String, dynamic> json) => Slot(
       startTime: json['startTime'] as String,
       endTime: json['endTime'] as String,
       date: json['date'] as String,
-      status: json['status'] as bool,
       doctor: Doctor.fromJson(json['doctor'] as Map<String, dynamic>),
+      booking: (json['booking'] as List<dynamic>)
+          .map((e) => Booking.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      slotEnumId: json['slotEnumId'] as int,
     );
 
 Map<String, dynamic> _$SlotToJson(Slot instance) => <String, dynamic>{
@@ -24,6 +27,7 @@ Map<String, dynamic> _$SlotToJson(Slot instance) => <String, dynamic>{
       'startTime': instance.startTime,
       'endTime': instance.endTime,
       'date': instance.date,
-      'status': instance.status,
       'doctor': instance.doctor,
+      'booking': instance.booking,
+      'slotEnumId': instance.slotEnumId,
     };

@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:pss_m/api/config.dart' show ApiClient;
 import 'package:pss_m/core/models/Doctor/doctor.dart';

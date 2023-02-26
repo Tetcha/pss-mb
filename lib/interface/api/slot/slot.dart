@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pss_m/core/models/Booking/booking.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 
 part 'slot.g.dart';
@@ -11,9 +12,9 @@ class Slot {
   String startTime;
   String endTime;
   String date;
-  bool status;
   Doctor doctor;
-
+  List<Booking> booking;
+  int slotEnumId;
   Slot({
     required this.id,
     required this.createAt,
@@ -21,8 +22,9 @@ class Slot {
     required this.startTime,
     required this.endTime,
     required this.date,
-    required this.status,
     required this.doctor,
+    required this.booking,
+    required this.slotEnumId,
   });
 
   factory Slot.fromJson(Map<String, dynamic> json) => _$SlotFromJson(json);

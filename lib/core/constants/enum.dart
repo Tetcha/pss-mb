@@ -22,3 +22,12 @@ enum Oder {
   @JsonValue('DESC')
   DESC
 }
+
+enum BookingStatus {
+  @JsonValue('PENDING')
+  PENDING,
+  @JsonValue('ACCEPTED')
+  ACCEPTED,
+  @JsonValue('REJECTED')
+  REJECTED,
+}

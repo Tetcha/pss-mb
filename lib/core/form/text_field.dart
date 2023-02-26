@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/core/constants/style.dart';
 import 'package:pss_m/providers/api.provider.dart';
 
-class TextFieldCopy extends StatelessWidget {
+class TextFieldC extends StatelessWidget {
   final TextEditingController? controller;
   final String? label;
   final bool isPassword;
@@ -18,28 +19,30 @@ class TextFieldCopy extends StatelessWidget {
   final Function()? onTap;
   final String? initialValue;
   late ApiProvider apiProvider;
-  TextFieldCopy(
-      {super.key,
-      this.controller,
-      this.label = '',
-      this.name = '',
-      this.defaultValue = '',
-      this.hintText = '',
-      this.isPassword = false,
-      this.keyBoardType = TextInputType.text,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.context,
-      this.disabled = false,
-      this.onTap,
-      this.initialValue}) {
+  TextFieldC({
+    super.key,
+    this.controller,
+    this.label = '',
+    this.name = '',
+    this.defaultValue = '',
+    this.hintText = '',
+    this.isPassword = false,
+    this.keyBoardType = TextInputType.text,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.context,
+    this.disabled = false,
+    this.onTap,
+    this.initialValue,
+  }) {
     apiProvider = Get.find();
   }
   get error => apiProvider.errorDetails[name];
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => TextFormField(
+      () => FormBuilderTextField(
+        name: name,
         initialValue: initialValue,
         enabled: !disabled,
         controller: controller,

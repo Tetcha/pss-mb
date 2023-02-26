@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pss_m/api/auth.api.dart';
+import 'package:pss_m/api/booking.api.dart';
 import 'package:pss_m/api/config.dart';
 import 'package:pss_m/api/doctor.api.dart';
 import 'package:pss_m/api/student.api.dart';
@@ -32,6 +33,7 @@ Future<void> configureDependencies() async {
   Get.lazyPut(() => DoctorApi());
   Get.lazyPut(() => UserProvider());
   Get.lazyPut(() => TwilioApi());
+  Get.lazyPut(() => BookingApi());
   // services
   Get.put(GoogleService());
   Get.put(FacebookService());

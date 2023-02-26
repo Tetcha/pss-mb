@@ -31,4 +31,5 @@ Map<String, dynamic> _$UpdateStudentPayloadToJson(
 const _$GenderEnumMap = {
   Gender.MALE: 'MALE',
   Gender.FEMALE: 'FEMALE',
+  Gender.OTHERS: 'OTHERS',
 };

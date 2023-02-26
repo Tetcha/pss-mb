@@ -12,6 +12,7 @@ import 'package:pss_m/services/notification.service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await configFirebase();
   await configureDependencies();
   FirebaseMessaging messaging = FirebaseMessaging.instance;
