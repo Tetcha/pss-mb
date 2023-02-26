@@ -27,7 +27,7 @@ class JoinRoomPage extends StatelessWidget {
                               token: state.token,
                               name: state.name,
                             ),
-                            child: ConferencePage(),
+                            child: const ConferencePage(),
                           )),
                 );
               }
@@ -61,16 +61,16 @@ class JoinRoomPage extends StatelessWidget {
                               height: 16,
                             ),
                             (isLoading == true)
-                                ? LinearProgressIndicator()
+                                ? const LinearProgressIndicator()
                                 : ElevatedButton(
                                     onPressed: () async {
                                       await bloc.submit();
                                     },
-                                    child: Text('Enter the room')),
+                                    child: const Text('Enter the room')),
                             (state is RoomError)
                                 ? Text(
                                     state.error,
-                                    style: TextStyle(color: Colors.red),
+                                    style: const TextStyle(color: Colors.red),
                                   )
                                 : Container(),
                             const SizedBox(

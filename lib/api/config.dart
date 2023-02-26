@@ -14,7 +14,7 @@ class ApiClient extends GetxService {
   final SharedPreferenceProvider preferenceHelper = Get.find();
   Dio http = Dio(
     BaseOptions(
-      baseUrl: 'http://10.0.2.2:4000/api/v1',
+      baseUrl: 'http://157.230.46.243:4000/api/v1',
     ),
   );
 

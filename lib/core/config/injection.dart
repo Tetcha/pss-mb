@@ -4,7 +4,7 @@ import 'package:pss_m/api/booking.api.dart';
 import 'package:pss_m/api/config.dart';
 import 'package:pss_m/api/doctor.api.dart';
 import 'package:pss_m/api/student.api.dart';
-import 'package:pss_m/api/twilo.api.dart';
+import 'package:pss_m/api/twilio.api.dart';
 import 'package:pss_m/providers/api.provider.dart';
 import 'package:pss_m/providers/sharePreference.provider.dart';
 import 'package:pss_m/providers/ui.provider.dart';

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pss_m/api/twilo.api.dart';
+import 'package:pss_m/api/twilio.api.dart';
 
 class TwilioService extends GetxService {
   final TwilioApi _twilioApi = Get.find();

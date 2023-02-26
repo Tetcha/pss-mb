@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:bloc/bloc.dart' show Cubit;
+import 'package:equatable/equatable.dart' show Equatable;
 import 'package:get/get.dart';
-import 'package:pss_m/services/twilio.service.dart';
+import 'package:pss_m/services/twilio.service.dart' show TwilioService;
 
 abstract class RoomState extends Equatable {
   const RoomState();
@@ -51,7 +51,7 @@ class RoomCubit extends Cubit<RoomState> {
       }
 
       if (token != null && identity != null) {
-        emit(RoomLoaded(name: name ?? '', token: token, identity: ""));
+        emit(RoomLoaded(name: name ?? '', token: token, identity: "hehe_hihi"));
       } else {
         emit(RoomError(error: 'Access token is empty!'));
       }

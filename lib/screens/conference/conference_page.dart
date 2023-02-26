@@ -41,7 +41,7 @@ class _ConferencePageState extends State<ConferencePage> {
                     bottom: 60,
                     child: IconButton(
                       color: Colors.red,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.call_end_sharp,
                         color: Colors.white,
                       ),
