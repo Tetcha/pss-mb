@@ -43,12 +43,23 @@ class _ConferencePageState extends State<ConferencePage> {
                       color: Colors.red,
                       icon: const Icon(
                         Icons.call_end_sharp,
-                        color: Colors.white,
+                        color: Colors.red,
                       ),
                       onPressed: () async {
                         context.read<ConferenceCubit>().disconnect();
                         Navigator.of(context).pop();
                       },
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 20,
+                    child: IconButton(
+                      color: Colors.red,
+                      icon: const Icon(
+                        Icons.mic_external_off_sharp,
+                        color: Colors.red,
+                      ),
+                      onPressed: () async {},
                     ),
                   )
                 ],
@@ -89,7 +100,7 @@ class _ConferencePageState extends State<ConferencePage> {
     final participants = conferenceRoom.participants;
     children.add(GridView.builder(
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
         itemCount: participants.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(

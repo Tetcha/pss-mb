@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +50,7 @@ class ConferenceCubit extends Cubit<ConferenceState> {
 
   late Room _room;
   late VideoCapturer _cameraCapturer;
-  late List<StreamSubscription> _streamSubscriptions = [];
+  late final List<StreamSubscription> _streamSubscriptions = [];
 
   ConferenceCubit({
     required this.name,
@@ -73,11 +75,11 @@ class ConferenceCubit extends Cubit<ConferenceState> {
   }
 
   /// TODO: Implement a connect, listeners and disconnect methods
-
   connect() async {
     print('[ APPDEBUG ] ConferenceRoom.connect()');
     try {
-      await TwilioProgrammableVideo.setSpeakerphoneOn(true);
+      await TwilioProgrammableVideo.setAudioSettings(
+          speakerphoneEnabled: true, bluetoothPreferred: false);
 
       final sources = await CameraSource.getSources();
       _cameraCapturer = CameraCapturer(
@@ -152,8 +154,7 @@ class ConferenceCubit extends Cubit<ConferenceState> {
     for (final remoteParticipant in room.remoteParticipants) {
       bool isParticipantAlreadyPresent = _participants
           .any((participant) => participant.id == remoteParticipant.sid);
-      // var participant = _participants.firstWhereOrNull(
-      //     (participant) => participant.id == remoteParticipant.sid);
+
       if (isParticipantAlreadyPresent == false) {
         print(
             '[ APPDEBUG ] Adding participant that was already present in the room ${remoteParticipant.sid}, before I connected');
@@ -170,6 +171,7 @@ class ConferenceCubit extends Cubit<ConferenceState> {
   void _onParticipantConnected(RoomParticipantConnectedEvent event) {
     print(
         '[ APPDEBUG ] ConferenceRoom._onParticipantConnected, ${event.remoteParticipant.sid}');
+
     _addRemoteParticipantListeners(event.remoteParticipant);
     reload();
   }
@@ -193,15 +195,14 @@ class ConferenceCubit extends Cubit<ConferenceState> {
     print(
         '[ APPDEBUG ] ConferenceRoom._addOrUpdateParticipant(), ${event.remoteParticipant.sid}');
     final participant = _participants
-        .firstWhere((element) => element.id == event.remoteParticipant.sid);
+        .any((element) => element.id == event.remoteParticipant.sid);
     // final participant = _participants.firstWhereOrNull(
     //   (ParticipantWidget participant) =>
     //       participant.id == event.remoteParticipant.sid,
     // );
 
-    if (participant != null) {
-      print(
-          '[ APPDEBUG ] Participant found: ${participant.id}, updating A/V enabled values');
+    if (participant == true) {
+      print('[ APPDEBUG ] Participant found, updating A/V enabled values');
     } else {
       if (event is RemoteVideoTrackSubscriptionEvent) {
         print(
