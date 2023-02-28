@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:pss_m/screens/conference/conference_cubit.dart';
 import 'package:pss_m/screens/conference/conference_page.dart';
+import 'package:pss_m/screens/conference_copy/conference_screen.dart';
 import 'package:pss_m/screens/room/join_room_cubit.dart';
 
 class JoinRoomPage extends StatelessWidget {
@@ -64,7 +66,8 @@ class JoinRoomPage extends StatelessWidget {
                                 ? const LinearProgressIndicator()
                                 : ElevatedButton(
                                     onPressed: () async {
-                                      await bloc.submit();
+                                      // await bloc.submit();
+                                      Get.to(() => const ConferenceScreen());
                                     },
                                     child: const Text('Enter the room')),
                             (state is RoomError)
