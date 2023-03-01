@@ -80,14 +80,15 @@ class ConferenceController extends GetxController {
     await localVideoTrack.enable(!localVideoTrack.isEnabled);
 
     isShareCamera = !isShareCamera;
-    update();
   }
 
   void _onVideoTrackDisabled(RemoteVideoTrackEvent event) {
+    print("[ APPDEBUG ] _onVideoTrackDisabled");
     _setRemoteVideoEnabled(event);
   }
 
   void _onVideoTrackEnabled(RemoteVideoTrackEvent event) {
+    print("[ APPDEBUG ] _onVideoTrackEnabled");
     _setRemoteVideoEnabled(event);
   }
 
@@ -160,7 +161,7 @@ class ConferenceController extends GetxController {
       isCameraEnabled:
           localParticipant.localVideoTracks[0].localVideoTrack.isEnabled,
     );
-
+    print("[ APPDEBUG ] myVideoInfo: ${room.remoteParticipants.length}");
     for (final remoteParticipant in room.remoteParticipants) {
       bool isParticipantAlreadyPresent = participants
           .any((participant) => participant.id == remoteParticipant.sid);
@@ -177,7 +178,6 @@ class ConferenceController extends GetxController {
 
   void _onParticipantConnected(RoomParticipantConnectedEvent event) {
     _addRemoteParticipantListeners(event.remoteParticipant);
-    update();
   }
 
   void _onParticipantDisconnected(RoomParticipantDisconnectedEvent event) {
@@ -207,10 +207,9 @@ class ConferenceController extends GetxController {
     }
 
     print(
-        "[ APPDEBUG ] _setRemoteVideoEnabled: ${event.remoteVideoTrackPublication.isTrackEnabled}");
+        "[ APPDEBUG ] _setRemoteVideoEnabled: ${event.remoteParticipant.remoteVideoTracks[0].toString()}");
     participants[index] = participants[index].copyWith(
         isCameraEnabled: event.remoteVideoTrackPublication.isTrackEnabled);
-    update();
   }
 
   void _addOrUpdateParticipant(RemoteParticipantEvent event) {
@@ -220,7 +219,6 @@ class ConferenceController extends GetxController {
         .indexWhere((element) => element.id == event.remoteParticipant.sid);
 
     if (index != -1) {
-      // maybe update video track here
       if (event is RemoteVideoTrackEvent) {
         _setRemoteVideoEnabled(event);
       }
@@ -236,13 +234,6 @@ class ConferenceController extends GetxController {
         );
       }
     }
-    update();
-  }
-
-  reload() {
-    conferenceStatus = ConferenceStatus.initial;
-    conferenceStatus = ConferenceStatus.loaded;
-
     update();
   }
 }

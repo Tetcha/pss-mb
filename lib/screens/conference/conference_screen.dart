@@ -46,7 +46,7 @@ class ConferenceScreen extends StatelessWidget {
       ]);
     }
 
-    return Stack(children: [Expanded(child: participants[0].child)]);
+    return Stack(children: [participants[0].child]);
   }
 
   Widget showProgress() {
