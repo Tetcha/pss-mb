@@ -43,9 +43,11 @@ class ConferenceController extends GetxController {
   ParticipantWidget _buildParticipant({
     required Widget child,
     required String? id,
+    required bool isCameraEnabled,
   }) {
     return ParticipantWidget(
       id: id,
+      isCameraEnabled: isCameraEnabled,
       child: child,
     );
   }
@@ -146,6 +148,8 @@ class ConferenceController extends GetxController {
     myVideoInfo = _buildParticipant(
       child: localParticipant.localVideoTracks[0].localVideoTrack.widget(),
       id: identity,
+      isCameraEnabled:
+          localParticipant.localVideoTracks[0].localVideoTrack.isEnabled,
     );
 
     for (final remoteParticipant in room.remoteParticipants) {
@@ -178,13 +182,23 @@ class ConferenceController extends GetxController {
         .listen(_addOrUpdateParticipant));
     _streamSubscriptions.add(remoteParticipant.onAudioTrackSubscribed
         .listen(_addOrUpdateParticipant));
+    _streamSubscriptions.add(remoteParticipant.onVideoTrackUnsubscribed
+        .listen(_addOrUpdateParticipant));
   }
 
   void _addOrUpdateParticipant(RemoteParticipantEvent event) {
-    final participant = participants
-        .any((element) => element.id == event.remoteParticipant.sid);
+    final index = participants
+        .indexWhere((element) => element.id == event.remoteParticipant.sid);
 
-    if (participant == true) {
+    if (index != -1) {
+      if (event is RemoteVideoTrackSubscriptionEvent) {
+        // maybe update video track here
+        participants[index] = _buildParticipant(
+          child: event.remoteVideoTrack.widget(),
+          id: event.remoteParticipant.sid,
+          isCameraEnabled: event.remoteVideoTrack.isEnabled,
+        );
+      }
     } else {
       if (event is RemoteVideoTrackSubscriptionEvent) {
         participants.insert(
@@ -192,6 +206,7 @@ class ConferenceController extends GetxController {
           _buildParticipant(
             child: event.remoteVideoTrack.widget(),
             id: event.remoteParticipant.sid,
+            isCameraEnabled: event.remoteVideoTrack.isEnabled,
           ),
         );
         update();

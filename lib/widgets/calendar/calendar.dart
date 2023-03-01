@@ -72,9 +72,7 @@ class Calendar extends StatelessWidget {
                                 "Time: ${currentValue.startTime} - ${currentValue.endTime}",
                               ),
                               subtitle: Text(
-                                isAvailable == true
-                                    ? "Available"
-                                    : "Not Available",
+                                isAvailable == true ? "Available" : "Busy",
                                 style: TextStyle(
                                   color:
                                       isAvailable ? Colors.green : Colors.grey,

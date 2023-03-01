@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/home.controller.dart';
 import 'package:pss_m/screens/demo.dart';
-import 'package:pss_m/screens/room/join_room_page.dart';
 import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
 import 'package:pss_m/widgets/carousel/carousel.dart';
 import 'package:pss_m/widgets/title/title.dart';
@@ -13,15 +12,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       init: HomeController(),
-      builder: (controller) => Column(
+      builder: (_) => Column(
         children: [
           const SizedBox(height: 20),
           Carousel(
-            data: controller.carouselData,
+            data: _.carouselData,
           ),
           ElevatedButton(
               onPressed: () {
-                Get.to(() => CompleteForm());
+                Get.to(() => const CompleteForm());
               },
               child: const Text("View demo form")),
           Container(
@@ -35,21 +34,19 @@ class HomeScreen extends StatelessWidget {
               children: [
                 const SectionTitle(label: "Available now:"),
                 const SizedBox(height: 20),
-                ...controller.availableDoctor.map((doctor) {
+                ..._.availableDoctor.map((doctor) {
                   return Column(
                     children: [
                       DoctorIntro(
                           doctor: doctor,
-                          onPressed: () => controller.onDoctorTap(doctor)),
+                          onPressed: () => _.onDoctorTap(doctor)),
                       const SizedBox(height: 10),
                     ],
                   );
                 }).toList(),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(() => JoinRoomPage());
-                    },
+                    onPressed: _.onOpenConferenceDemo,
                     child: const Text("See more"),
                   ),
                 )

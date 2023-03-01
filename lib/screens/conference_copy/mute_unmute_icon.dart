@@ -4,7 +4,8 @@ class MuteUnmuteIconButton extends StatelessWidget {
   final bool isMuted;
   final void Function()? onPressed;
 
-  const MuteUnmuteIconButton({required this.isMuted, required this.onPressed});
+  const MuteUnmuteIconButton(
+      {super.key, required this.isMuted, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

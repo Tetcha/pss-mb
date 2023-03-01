@@ -13,7 +13,9 @@ class DoctorScheduleScreen extends StatelessWidget {
       init: DoctorScheduleController(doctor: doctor),
       builder: (controller) => Scaffold(
         appBar: AppBar(
-          title: Text("${controller.doctor.name} schedule"),
+          title: Text(
+            "${controller.doctor.name} schedule",
+          ),
         ),
         body: controller.isFetchedData
             ? Calendar(data: controller.data)

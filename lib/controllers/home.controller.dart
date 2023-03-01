@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
+import 'package:pss_m/screens/conference_copy/conference_screen.dart';
 import 'package:pss_m/screens/doctor_schedule.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/interface/carousel/carousel_item.dart';
+import 'package:pss_m/services/twilio.service.dart';
 
 class HomeController extends GetxController {
+  final TwilioService _twilioService = Get.find<TwilioService>();
   final List<ICarouselItem> carouselData = [
     ICarouselItem(
       title: "Slide 1",
@@ -66,6 +69,16 @@ class HomeController extends GetxController {
   void onDoctorTap(Doctor doctor) {
     Get.to(() => DoctorScheduleScreen(
           doctor: doctor,
+        ));
+  }
+
+  void onOpenConferenceDemo() async {
+    String accessToken = await _twilioService.createToken(
+        identity: "duc_dau", roomName: "test-room");
+    Get.to(() => ConferenceScreen(
+          identify: "duc_dau",
+          token: accessToken,
+          name: "duc_dau",
         ));
   }
 }

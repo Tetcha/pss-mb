@@ -7,7 +7,15 @@ import 'package:pss_m/screens/conference_copy/mute_unmute_icon.dart';
 import 'package:pss_m/screens/conference_copy/show_hide_camera_icon.dart';
 
 class ConferenceScreen extends StatelessWidget {
-  const ConferenceScreen({super.key});
+  final String name;
+  final String token;
+  final String identify;
+  const ConferenceScreen({
+    super.key,
+    required this.name,
+    required this.token,
+    required this.identify,
+  });
 
   Widget _buildMyVideo(ParticipantWidget? me, bool isEnabled) {
     if (me == null) return Container();
@@ -55,10 +63,9 @@ class ConferenceScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       body: GetBuilder<ConferenceController>(
         init: ConferenceController(
-          name: "frc",
-          token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzkxY2IzNjYxMDAxZDM2YWE3NTNlZjU1OTgwNWE1NjIwLTE2Nzc1OTg2OTEiLCJncmFudHMiOnsiaWRlbnRpdHkiOiJ5ZXllIiwidmlkZW8iOnsicm9vbSI6InRlc3Qtcm9vbSJ9fSwiaWF0IjoxNjc3NTk4NjkxLCJleHAiOjE2Nzc2MDIyOTEsImlzcyI6IlNLOTFjYjM2NjEwMDFkMzZhYTc1M2VmNTU5ODA1YTU2MjAiLCJzdWIiOiJBQ2YzMTdhYWYwMGExNTkyNjVjZjJlOWRlNGE2NzY1MDEzIn0.QBEvikEr-RpkrBueovFKlqbHUwdAcTeNC5UUn-tUjpA",
-          identity: "user",
+          name: name,
+          token: token,
+          identity: identify,
         ),
         builder: (_) {
           if (_.conferenceStatus == ConferenceStatus.initial) {
