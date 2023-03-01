@@ -19,9 +19,9 @@ class ConferenceController extends GetxController {
   bool isMuted = false;
   bool isShareCamera = true;
   // for control participants video
-  final List<ParticipantWidget> participants = [];
+  final List<ParticipantData> participants = [];
   // user's video
-  late ParticipantWidget? myVideoInfo;
+  late ParticipantData? myVideoInfo;
 
   // status for checking the room is loading or not
   late ConferenceStatus conferenceStatus;
@@ -40,12 +40,12 @@ class ConferenceController extends GetxController {
     connect();
   }
 
-  ParticipantWidget _buildParticipant({
+  ParticipantData _buildParticipant({
     required Widget child,
     required String? id,
     required bool isCameraEnabled,
   }) {
-    return ParticipantWidget(
+    return ParticipantData(
       id: id,
       isCameraEnabled: isCameraEnabled,
       child: child,
@@ -81,6 +81,14 @@ class ConferenceController extends GetxController {
 
     isShareCamera = !isShareCamera;
     update();
+  }
+
+  void _onVideoTrackDisabled(RemoteVideoTrackEvent event) {
+    _setRemoteVideoEnabled(event);
+  }
+
+  void _onVideoTrackEnabled(RemoteVideoTrackEvent event) {
+    _setRemoteVideoEnabled(event);
   }
 
   connect() async {
@@ -139,6 +147,7 @@ class ConferenceController extends GetxController {
         .add(_room.onParticipantConnected.listen(_onParticipantConnected));
     _streamSubscriptions.add(
         _room.onParticipantDisconnected.listen(_onParticipantDisconnected));
+
     final localParticipant = room.localParticipant;
     if (localParticipant == null) {
       return;
@@ -173,7 +182,7 @@ class ConferenceController extends GetxController {
 
   void _onParticipantDisconnected(RoomParticipantDisconnectedEvent event) {
     participants.removeWhere(
-        (ParticipantWidget p) => p.id == event.remoteParticipant.sid);
+        (ParticipantData p) => p.id == event.remoteParticipant.sid);
     update();
   }
 
@@ -184,20 +193,36 @@ class ConferenceController extends GetxController {
         .listen(_addOrUpdateParticipant));
     _streamSubscriptions.add(remoteParticipant.onVideoTrackUnsubscribed
         .listen(_addOrUpdateParticipant));
+    _streamSubscriptions.add(
+        remoteParticipant.onVideoTrackDisabled.listen(_onVideoTrackDisabled));
+    _streamSubscriptions.add(
+        remoteParticipant.onVideoTrackEnabled.listen(_onVideoTrackEnabled));
+  }
+
+  void _setRemoteVideoEnabled(RemoteVideoTrackEvent event) {
+    var index = participants.indexWhere(
+        (participant) => participant.id == event.remoteParticipant.sid);
+    if (index < 0) {
+      return;
+    }
+
+    print(
+        "[ APPDEBUG ] _setRemoteVideoEnabled: ${event.remoteVideoTrackPublication.isTrackEnabled}");
+    participants[index] = participants[index].copyWith(
+        isCameraEnabled: event.remoteVideoTrackPublication.isTrackEnabled);
+    update();
   }
 
   void _addOrUpdateParticipant(RemoteParticipantEvent event) {
+    print(
+        "[ APPDEBUG ] _addOrUpdateParticipant: ${event.remoteParticipant.videoTracks[0].isTrackEnabled}");
     final index = participants
         .indexWhere((element) => element.id == event.remoteParticipant.sid);
 
     if (index != -1) {
-      if (event is RemoteVideoTrackSubscriptionEvent) {
-        // maybe update video track here
-        participants[index] = _buildParticipant(
-          child: event.remoteVideoTrack.widget(),
-          id: event.remoteParticipant.sid,
-          isCameraEnabled: event.remoteVideoTrack.isEnabled,
-        );
+      // maybe update video track here
+      if (event is RemoteVideoTrackEvent) {
+        _setRemoteVideoEnabled(event);
       }
     } else {
       if (event is RemoteVideoTrackSubscriptionEvent) {
@@ -209,9 +234,9 @@ class ConferenceController extends GetxController {
             isCameraEnabled: event.remoteVideoTrack.isEnabled,
           ),
         );
-        update();
       }
     }
+    update();
   }
 
   reload() {

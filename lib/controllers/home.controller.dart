@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pss_m/screens/conference_copy/conference_screen.dart';
+import 'package:pss_m/screens/conference/conference_screen.dart';
 import 'package:pss_m/screens/doctor_schedule.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';

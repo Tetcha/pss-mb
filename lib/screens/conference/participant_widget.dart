@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 
-class ParticipantWidget extends StatelessWidget {
+class ParticipantData {
   final Widget child;
   final String? id;
   final bool isCameraEnabled;
-  const ParticipantWidget({
-    super.key,
+  const ParticipantData({
     required this.child,
     required this.id,
     required this.isCameraEnabled,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return child;
+  ParticipantData copyWith({
+    Widget? child,
+    String? id,
+    bool? isCameraEnabled,
+  }) {
+    return ParticipantData(
+      id: id ?? this.id,
+      isCameraEnabled: isCameraEnabled ?? this.isCameraEnabled,
+      child: child ?? this.child,
+    );
   }
 }

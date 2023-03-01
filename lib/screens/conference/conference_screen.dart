@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/screens/conference/participant_widget.dart';
-import 'package:pss_m/screens/conference_copy/conference.controller.dart';
-import 'package:pss_m/screens/conference_copy/disconnect_icon.dart';
-import 'package:pss_m/screens/conference_copy/mute_unmute_icon.dart';
-import 'package:pss_m/screens/conference_copy/show_hide_camera_icon.dart';
+import 'package:pss_m/screens/conference/conference.controller.dart';
+import 'package:pss_m/screens/conference/disconnect_icon.dart';
+import 'package:pss_m/screens/conference/mute_unmute_icon.dart';
+import 'package:pss_m/screens/conference/show_hide_camera_icon.dart';
 
 class ConferenceScreen extends StatelessWidget {
   final String name;
@@ -17,7 +17,7 @@ class ConferenceScreen extends StatelessWidget {
     required this.identify,
   });
 
-  Widget _buildMyVideo(ParticipantWidget? me, bool isEnabled) {
+  Widget _buildMyVideo(ParticipantData? me, bool isEnabled) {
     if (me == null) return Container();
 
     if (isEnabled == false) return Container();
@@ -28,16 +28,25 @@ class ConferenceScreen extends StatelessWidget {
         width: 140,
         height: 180,
         child: Card(
-          child: me,
+          child: me.child,
         ),
       ),
     );
   }
 
-  Widget _buildParticipants(List<ParticipantWidget> participants) {
+  Widget _buildParticipants(List<ParticipantData> participants) {
     if (participants.isEmpty) return Container();
+    if (participants[0].isCameraEnabled == false) {
+      return Stack(children: const [
+        Expanded(
+          child: Center(
+            child: Icon(Icons.people),
+          ),
+        )
+      ]);
+    }
 
-    return Stack(children: [Expanded(child: participants[0])]);
+    return Stack(children: [Expanded(child: participants[0].child)]);
   }
 
   Widget showProgress() {
