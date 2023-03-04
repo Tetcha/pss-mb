@@ -33,7 +33,7 @@ class CalendarController extends GetxController {
           startTime: slot.startTime,
           endTime: slot.endTime,
           date: slot.date,
-          status: slot.booking.isEmpty ? true : false,
+          status: slot.booking!.isEmpty ? true : false,
           doctor: slot.doctor,
         ));
       } else {
@@ -43,7 +43,7 @@ class CalendarController extends GetxController {
             startTime: slot.startTime,
             endTime: slot.endTime,
             date: slot.date,
-            status: slot.booking.isEmpty ? true : false,
+            status: slot.booking!.isEmpty ? true : false,
             doctor: slot.doctor,
           )
         ];

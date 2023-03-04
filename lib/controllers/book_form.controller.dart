@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:pss_m/api/booking.api.dart';
 import 'package:pss_m/interface/calendar/calendar.dart';
 import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/services/Toast.service.dart';
+import 'package:pss_m/services/booking.service.dart';
 
 class BookFormController extends GetxController {
   final UserProvider _userProvider = Get.find();
-  final BookingApi _bookingApi = Get.find();
+  final BookingService _bookingService = Get.find();
   final ToastService _toastService = Get.find();
   Event currentEvent;
   GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
@@ -42,7 +42,7 @@ class BookFormController extends GetxController {
 
     List<String> convertedQuestionList =
         questionList.whereType<String>().toList();
-    var response = await _bookingApi.bookSlot(
+    var response = await _bookingService.bookSlot(
       slotId: currentEvent.slotId,
       questionContent: convertedQuestionList,
     );

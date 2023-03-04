@@ -15,7 +15,9 @@ class DateUtil {
     return DateTime.parse(date);
   }
 
-  static String serverStringToText(String date) {
+  static String serverStringToText(String? date) {
+    if (date == null) return '';
+
     DateTime dateTime = serverStringToDate(date);
     var outputFormat = DateFormat('MM/dd/yyyy');
     return outputFormat.format(dateTime.toLocal());

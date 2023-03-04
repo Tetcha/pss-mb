@@ -21,10 +21,11 @@ Booking _$BookingFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Booking {
   String get id => throw _privateConstructorUsedError;
-  String get createAt => throw _privateConstructorUsedError;
-  String get updateAt => throw _privateConstructorUsedError;
   double get cost => throw _privateConstructorUsedError;
   BookingStatus get status => throw _privateConstructorUsedError;
+  Slot? get slot => throw _privateConstructorUsedError;
+  Student? get student => throw _privateConstructorUsedError;
+  List<Question> get questions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,10 +39,13 @@ abstract class $BookingCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String createAt,
-      String updateAt,
       double cost,
-      BookingStatus status});
+      BookingStatus status,
+      Slot? slot,
+      Student? student,
+      List<Question> questions});
+
+  $StudentCopyWith<$Res>? get student;
 }
 
 /// @nodoc
@@ -58,23 +62,16 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
   @override
   $Res call({
     Object? id = null,
-    Object? createAt = null,
-    Object? updateAt = null,
     Object? cost = null,
     Object? status = null,
+    Object? slot = freezed,
+    Object? student = freezed,
+    Object? questions = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      createAt: null == createAt
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updateAt: null == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
               as String,
       cost: null == cost
           ? _value.cost
@@ -84,7 +81,31 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as BookingStatus,
+      slot: freezed == slot
+          ? _value.slot
+          : slot // ignore: cast_nullable_to_non_nullable
+              as Slot?,
+      student: freezed == student
+          ? _value.student
+          : student // ignore: cast_nullable_to_non_nullable
+              as Student?,
+      questions: null == questions
+          ? _value.questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Question>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $StudentCopyWith<$Res>? get student {
+    if (_value.student == null) {
+      return null;
+    }
+
+    return $StudentCopyWith<$Res>(_value.student!, (value) {
+      return _then(_value.copyWith(student: value) as $Val);
+    });
   }
 }
 
@@ -97,10 +118,14 @@ abstract class _$$_BookingCopyWith<$Res> implements $BookingCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String createAt,
-      String updateAt,
       double cost,
-      BookingStatus status});
+      BookingStatus status,
+      Slot? slot,
+      Student? student,
+      List<Question> questions});
+
+  @override
+  $StudentCopyWith<$Res>? get student;
 }
 
 /// @nodoc
@@ -114,23 +139,16 @@ class __$$_BookingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? createAt = null,
-    Object? updateAt = null,
     Object? cost = null,
     Object? status = null,
+    Object? slot = freezed,
+    Object? student = freezed,
+    Object? questions = null,
   }) {
     return _then(_$_Booking(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      createAt: null == createAt
-          ? _value.createAt
-          : createAt // ignore: cast_nullable_to_non_nullable
-              as String,
-      updateAt: null == updateAt
-          ? _value.updateAt
-          : updateAt // ignore: cast_nullable_to_non_nullable
               as String,
       cost: null == cost
           ? _value.cost
@@ -140,6 +158,18 @@ class __$$_BookingCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as BookingStatus,
+      slot: freezed == slot
+          ? _value.slot
+          : slot // ignore: cast_nullable_to_non_nullable
+              as Slot?,
+      student: freezed == student
+          ? _value.student
+          : student // ignore: cast_nullable_to_non_nullable
+              as Student?,
+      questions: null == questions
+          ? _value._questions
+          : questions // ignore: cast_nullable_to_non_nullable
+              as List<Question>,
     ));
   }
 }
@@ -149,10 +179,12 @@ class __$$_BookingCopyWithImpl<$Res>
 class _$_Booking implements _Booking {
   const _$_Booking(
       {required this.id,
-      required this.createAt,
-      required this.updateAt,
       required this.cost,
-      required this.status});
+      required this.status,
+      required this.slot,
+      required this.student,
+      required final List<Question> questions})
+      : _questions = questions;
 
   factory _$_Booking.fromJson(Map<String, dynamic> json) =>
       _$$_BookingFromJson(json);
@@ -160,17 +192,24 @@ class _$_Booking implements _Booking {
   @override
   final String id;
   @override
-  final String createAt;
-  @override
-  final String updateAt;
-  @override
   final double cost;
   @override
   final BookingStatus status;
+  @override
+  final Slot? slot;
+  @override
+  final Student? student;
+  final List<Question> _questions;
+  @override
+  List<Question> get questions {
+    if (_questions is EqualUnmodifiableListView) return _questions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_questions);
+  }
 
   @override
   String toString() {
-    return 'Booking(id: $id, createAt: $createAt, updateAt: $updateAt, cost: $cost, status: $status)';
+    return 'Booking(id: $id, cost: $cost, status: $status, slot: $slot, student: $student, questions: $questions)';
   }
 
   @override
@@ -179,18 +218,18 @@ class _$_Booking implements _Booking {
         (other.runtimeType == runtimeType &&
             other is _$_Booking &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createAt, createAt) ||
-                other.createAt == createAt) &&
-            (identical(other.updateAt, updateAt) ||
-                other.updateAt == updateAt) &&
             (identical(other.cost, cost) || other.cost == cost) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.slot, slot) || other.slot == slot) &&
+            (identical(other.student, student) || other.student == student) &&
+            const DeepCollectionEquality()
+                .equals(other._questions, _questions));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, createAt, updateAt, cost, status);
+  int get hashCode => Object.hash(runtimeType, id, cost, status, slot, student,
+      const DeepCollectionEquality().hash(_questions));
 
   @JsonKey(ignore: true)
   @override
@@ -209,23 +248,26 @@ class _$_Booking implements _Booking {
 abstract class _Booking implements Booking {
   const factory _Booking(
       {required final String id,
-      required final String createAt,
-      required final String updateAt,
       required final double cost,
-      required final BookingStatus status}) = _$_Booking;
+      required final BookingStatus status,
+      required final Slot? slot,
+      required final Student? student,
+      required final List<Question> questions}) = _$_Booking;
 
   factory _Booking.fromJson(Map<String, dynamic> json) = _$_Booking.fromJson;
 
   @override
   String get id;
   @override
-  String get createAt;
-  @override
-  String get updateAt;
-  @override
   double get cost;
   @override
   BookingStatus get status;
+  @override
+  Slot? get slot;
+  @override
+  Student? get student;
+  @override
+  List<Question> get questions;
   @override
   @JsonKey(ignore: true)
   _$$_BookingCopyWith<_$_Booking> get copyWith =>

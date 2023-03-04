@@ -13,8 +13,8 @@ class Slot {
   String endTime;
   String date;
   Doctor doctor;
-  List<Booking> booking;
-  int slotEnumId;
+  List<Booking>? booking;
+  int? slotEnumId;
   Slot({
     required this.id,
     required this.createAt,

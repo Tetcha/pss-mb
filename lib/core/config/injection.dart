@@ -11,6 +11,7 @@ import 'package:pss_m/providers/ui.provider.dart';
 import 'package:pss_m/providers/user.provider.dart';
 
 import 'package:pss_m/services/Toast.service.dart';
+import 'package:pss_m/services/booking.service.dart';
 import 'package:pss_m/services/doctor.service.dart';
 import 'package:pss_m/services/facebook.service.dart';
 import 'package:pss_m/services/google.service.dart';
@@ -42,4 +43,5 @@ Future<void> configureDependencies() async {
   Get.put(ToastService());
   Get.put(NotificationService());
   Get.put(TwilioService());
+  Get.put(BookingService());
 }
