@@ -15,7 +15,7 @@ class Booking with _$Booking {
     required BookingStatus status,
     required Slot? slot,
     required Student? student,
-    required List<Question> questions,
+    required List<Question>? questions,
   }) = _Booking;
 
   factory Booking.fromJson(Map<String, dynamic> json) =>

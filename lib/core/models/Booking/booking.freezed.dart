@@ -25,7 +25,7 @@ mixin _$Booking {
   BookingStatus get status => throw _privateConstructorUsedError;
   Slot? get slot => throw _privateConstructorUsedError;
   Student? get student => throw _privateConstructorUsedError;
-  List<Question> get questions => throw _privateConstructorUsedError;
+  List<Question>? get questions => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $BookingCopyWith<$Res> {
       BookingStatus status,
       Slot? slot,
       Student? student,
-      List<Question> questions});
+      List<Question>? questions});
 
   $StudentCopyWith<$Res>? get student;
 }
@@ -66,7 +66,7 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
     Object? status = null,
     Object? slot = freezed,
     Object? student = freezed,
-    Object? questions = null,
+    Object? questions = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,10 +89,10 @@ class _$BookingCopyWithImpl<$Res, $Val extends Booking>
           ? _value.student
           : student // ignore: cast_nullable_to_non_nullable
               as Student?,
-      questions: null == questions
+      questions: freezed == questions
           ? _value.questions
           : questions // ignore: cast_nullable_to_non_nullable
-              as List<Question>,
+              as List<Question>?,
     ) as $Val);
   }
 
@@ -122,7 +122,7 @@ abstract class _$$_BookingCopyWith<$Res> implements $BookingCopyWith<$Res> {
       BookingStatus status,
       Slot? slot,
       Student? student,
-      List<Question> questions});
+      List<Question>? questions});
 
   @override
   $StudentCopyWith<$Res>? get student;
@@ -143,7 +143,7 @@ class __$$_BookingCopyWithImpl<$Res>
     Object? status = null,
     Object? slot = freezed,
     Object? student = freezed,
-    Object? questions = null,
+    Object? questions = freezed,
   }) {
     return _then(_$_Booking(
       id: null == id
@@ -166,10 +166,10 @@ class __$$_BookingCopyWithImpl<$Res>
           ? _value.student
           : student // ignore: cast_nullable_to_non_nullable
               as Student?,
-      questions: null == questions
+      questions: freezed == questions
           ? _value._questions
           : questions // ignore: cast_nullable_to_non_nullable
-              as List<Question>,
+              as List<Question>?,
     ));
   }
 }
@@ -183,7 +183,7 @@ class _$_Booking implements _Booking {
       required this.status,
       required this.slot,
       required this.student,
-      required final List<Question> questions})
+      required final List<Question>? questions})
       : _questions = questions;
 
   factory _$_Booking.fromJson(Map<String, dynamic> json) =>
@@ -199,12 +199,14 @@ class _$_Booking implements _Booking {
   final Slot? slot;
   @override
   final Student? student;
-  final List<Question> _questions;
+  final List<Question>? _questions;
   @override
-  List<Question> get questions {
+  List<Question>? get questions {
+    final value = _questions;
+    if (value == null) return null;
     if (_questions is EqualUnmodifiableListView) return _questions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_questions);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -252,7 +254,7 @@ abstract class _Booking implements Booking {
       required final BookingStatus status,
       required final Slot? slot,
       required final Student? student,
-      required final List<Question> questions}) = _$_Booking;
+      required final List<Question>? questions}) = _$_Booking;
 
   factory _Booking.fromJson(Map<String, dynamic> json) = _$_Booking.fromJson;
 
@@ -267,7 +269,7 @@ abstract class _Booking implements Booking {
   @override
   Student? get student;
   @override
-  List<Question> get questions;
+  List<Question>? get questions;
   @override
   @JsonKey(ignore: true)
   _$$_BookingCopyWith<_$_Booking> get copyWith =>

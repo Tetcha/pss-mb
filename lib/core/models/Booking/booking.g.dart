@@ -16,8 +16,8 @@ _$_Booking _$$_BookingFromJson(Map<String, dynamic> json) => _$_Booking(
       student: json['student'] == null
           ? null
           : Student.fromJson(json['student'] as Map<String, dynamic>),
-      questions: (json['questions'] as List<dynamic>)
-          .map((e) => Question.fromJson(e as Map<String, dynamic>))
+      questions: (json['questions'] as List<dynamic>?)
+          ?.map((e) => Question.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
