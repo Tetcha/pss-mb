@@ -165,7 +165,7 @@ class TreatmentDetail extends StatelessWidget {
                           _renderInfoLine(
                             title: 'Doctor',
                             valueWidget: GestureDetector(
-                              onTap: _.onDoctorTap,
+                              onTap: () => _.onDoctorTap(booking.slot?.doctor),
                               child: Text(
                                 booking.slot?.doctor.name ?? "unknown",
                                 style: const TextStyle(

@@ -26,6 +26,8 @@ class AllDoctorController extends GetxController {
 
     allDoctor.addAll(response!.data);
     countValue = response.count;
+
+    if (allDoctor.length >= countValue) isEnd.value = true;
   }
 
   @override

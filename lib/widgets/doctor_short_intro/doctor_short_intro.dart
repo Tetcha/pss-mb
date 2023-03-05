@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:pss_m/core/constants/style.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 
-class DoctorIntro extends StatelessWidget {
+class DoctorShortIntro extends StatelessWidget {
   final Doctor doctor;
   final VoidCallback? onPressed;
-  const DoctorIntro({super.key, required this.doctor, this.onPressed});
+  const DoctorShortIntro({super.key, required this.doctor, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

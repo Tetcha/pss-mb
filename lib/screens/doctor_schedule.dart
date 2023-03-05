@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/doctor_schedule.controller.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
+import 'package:pss_m/widgets/doctor_intro/doctor_info.dart';
 import 'package:pss_m/widgets/calendar/calendar.dart';
 
 class DoctorScheduleScreen extends StatelessWidget {
-  Doctor doctor;
-  DoctorScheduleScreen({Key? key, required this.doctor}) : super(key: key);
+  final Doctor doctor;
+  const DoctorScheduleScreen({Key? key, required this.doctor})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoctorScheduleController>(
@@ -18,7 +20,12 @@ class DoctorScheduleScreen extends StatelessWidget {
           ),
         ),
         body: controller.isFetchedData
-            ? Calendar(data: controller.data)
+            ? Column(
+                children: [
+                  DoctorInfo(doctor: doctor),
+                  Expanded(child: Calendar(data: controller.data))
+                ],
+              )
             : const Center(child: CircularProgressIndicator()),
       ),
     );

@@ -1,14 +1,20 @@
 import 'package:get/get.dart';
+import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/screens/conference/conference_screen.dart';
-import 'package:pss_m/screens/doctor_info.dart';
+import 'package:pss_m/screens/doctor_schedule.dart';
 import 'package:pss_m/services/twilio.service.dart';
 
 class TreatmentDetailController extends GetxController {
   final TwilioService _twilioService = Get.find();
   final UserProvider _userProvider = Get.find();
-  void onDoctorTap() {
-    Get.to(() => DoctorInfo(doctorId: ""));
+  void onDoctorTap(Doctor? doctor) {
+    if (doctor == null) {
+      print("doctor info is null");
+      return;
+    }
+
+    Get.to(() => DoctorScheduleScreen(doctor: doctor));
   }
 
   void onJoinMeetingTap() async {

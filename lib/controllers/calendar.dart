@@ -13,7 +13,7 @@ class CalendarController extends GetxController {
   List<Slot> data;
 
   late final ValueNotifier<List<Event>> selectedEvents;
-  CalendarFormat calendarFormat = CalendarFormat.month;
+  CalendarFormat calendarFormat = CalendarFormat.week;
   DateTime focusedDay = DateTime.now();
   DateTime? selectedDay;
   final kEvents = LinkedHashMap<DateTime, List<Event>>(

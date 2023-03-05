@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/all_doctor.controller.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
-import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
+import 'package:pss_m/widgets/doctor_short_intro/doctor_short_intro.dart';
 
 class AllDoctorScreen extends StatelessWidget {
   const AllDoctorScreen({super.key});
@@ -22,37 +22,36 @@ class AllDoctorScreen extends StatelessWidget {
         30;
     return GetBuilder<AllDoctorController>(
       init: AllDoctorController(),
-      builder: (controller) => Container(
+      builder: (_) => Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
         ),
         child: Obx(
-          () => controller.allDoctor.isEmpty
+          () => _.allDoctor.isEmpty
               ? const Center(
                   child: Text("Looking for doctors..."),
                 )
               : RefreshIndicator(
                   backgroundColor: Theme.of(context).primaryColor,
                   color: Colors.white,
-                  onRefresh: controller.onRefresh,
+                  onRefresh: _.onRefresh,
                   child: SizedBox(
                     height: availableHeight,
                     child: ListView.builder(
-                      controller: controller.scrollController,
+                      controller: _.scrollController,
                       itemExtent: 85,
-                      itemCount: controller.itemCount,
+                      itemCount: _.itemCount,
                       itemBuilder: (context, index) {
-                        if (controller.isEnd.value == false &&
-                            index == controller.allDoctor.length) {
+                        if (_.isEnd.value == false &&
+                            index == _.allDoctor.length) {
                           return const Center(
                             child: CupertinoActivityIndicator(),
                           );
                         }
-                        Doctor currentDoctor = controller.allDoctor[index];
-                        return DoctorIntro(
+                        Doctor currentDoctor = _.allDoctor[index];
+                        return DoctorShortIntro(
                           doctor: currentDoctor,
-                          onPressed: () =>
-                              controller.onDoctorTap(currentDoctor),
+                          onPressed: () => _.onDoctorTap(currentDoctor),
                         );
                       },
                     ),

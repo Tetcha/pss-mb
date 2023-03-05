@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/home.controller.dart';
 import 'package:pss_m/screens/demo.dart';
-import 'package:pss_m/widgets/Doctor/doctor_intro.dart';
+import 'package:pss_m/widgets/doctor_short_intro/doctor_short_intro.dart';
 import 'package:pss_m/widgets/carousel/carousel.dart';
 import 'package:pss_m/widgets/title/title.dart';
 
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 ..._.availableDoctor.map((doctor) {
                   return Column(
                     children: [
-                      DoctorIntro(
+                      DoctorShortIntro(
                           doctor: doctor,
                           onPressed: () => _.onDoctorTap(doctor)),
                       const SizedBox(height: 10),
