@@ -17,7 +17,7 @@ class ConferenceScreen extends StatelessWidget {
     required this.identify,
   });
 
-  Widget _buildMyVideo(ParticipantData? me, bool isEnabled) {
+  Widget _buildMyVideo(ParticipantWidget? me, bool isEnabled) {
     if (me == null) return Container();
 
     if (isEnabled == false) return Container();
@@ -34,19 +34,10 @@ class ConferenceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildParticipants(List<ParticipantData> participants) {
+  Widget _buildParticipants(List<ParticipantWidget> participants) {
     if (participants.isEmpty) return Container();
-    if (participants[0].isCameraEnabled == false) {
-      return Stack(children: const [
-        Expanded(
-          child: Center(
-            child: Icon(Icons.people),
-          ),
-        )
-      ]);
-    }
 
-    return Stack(children: [participants[0].child]);
+    return Stack(children: [participants[0]]);
   }
 
   Widget showProgress() {

@@ -19,6 +19,6 @@ class ToastService extends GetxService {
 
   void showWarning(String message) {
     Get.snackbar("Warning", message,
-        backgroundColor: Colors.yellow, colorText: Colors.white);
+        backgroundColor: Colors.orange[300], colorText: Colors.white);
   }
 }

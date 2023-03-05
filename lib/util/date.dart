@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 class DateUtil {
   static DateTime fromString(String date) {
     var inputFormat = DateFormat('MM/dd/yyyy');
-    return inputFormat.parse(date);
+    return inputFormat.parse(date).toLocal();
   }
 
   static String toText(DateTime date) {
@@ -12,7 +12,7 @@ class DateUtil {
   }
 
   static DateTime serverStringToDate(String date) {
-    return DateTime.parse(date);
+    return DateTime.parse(date).toLocal();
   }
 
   static String serverStringToText(String? date) {

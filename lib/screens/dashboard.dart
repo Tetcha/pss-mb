@@ -15,9 +15,6 @@ class DashBoardLayout extends StatelessWidget {
       builder: (controller) => LoadingOverlay(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          // appBar: AppBar(
-          //   title: const Text('Psych System'),
-          // ),
           body: SafeArea(
             child: RepaintBoundary(
               key: const Key("global key"),

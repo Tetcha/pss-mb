@@ -7,11 +7,14 @@ import 'package:pss_m/core/constants/store.dart';
 import 'package:pss_m/providers/api.provider.dart';
 import 'package:pss_m/providers/ui.provider.dart';
 import 'package:pss_m/providers/sharePreference.provider.dart';
+import 'package:pss_m/screens/login.dart';
+import 'package:pss_m/services/Toast.service.dart';
 
 class ApiClient extends GetxService {
   final ApiProvider _apiProvider = Get.find();
   final UIProvider _uiProvider = Get.find();
-  final SharedPreferenceProvider preferenceHelper = Get.find();
+  final SharedPreferenceProvider _preferenceProvider = Get.find();
+  final ToastService _toastService = Get.put(ToastService());
   Dio http = Dio(
     BaseOptions(
       baseUrl: 'http://157.230.46.243:4000/api/v1',
@@ -27,9 +30,9 @@ class ApiClient extends GetxService {
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
       // include headers
       options.contentType = "application/json;charset=UTF-8";
-      if (preferenceHelper.instance.containsKey(StoreKey.authToken)) {
+      if (_preferenceProvider.instance.containsKey(StoreKey.authToken)) {
         options.headers[StoreKey.authToken] =
-            'Bearer ${preferenceHelper.authToken}';
+            'Bearer ${_preferenceProvider.authToken}';
       }
       //open loading
       // _uiProvider.setIsLoading = true;
@@ -46,6 +49,15 @@ class ApiClient extends GetxService {
       Timer(const Duration(milliseconds: 500), () {
         // _uiProvider.setIsLoading = false;
       });
+
+      if (e.response?.statusCode == 401) {
+        _preferenceProvider.removeAuthToken();
+        Get.off(() => const LoginScreen());
+        _toastService
+            .showWarning('Your session has expired. Please login again');
+
+        return handler.next(e);
+      }
 
       if (e.response?.statusCode == 400) {
         var errorDetails =
