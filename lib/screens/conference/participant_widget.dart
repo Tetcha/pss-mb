@@ -24,6 +24,7 @@ class ParticipantWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("[ ParticipantWidget ] build ${isCameraEnabled}");
     if (isCameraEnabled == false) {
       return SizedBox(
         width: double.infinity,
@@ -43,6 +44,7 @@ class ParticipantWidget extends StatelessWidget {
         ),
       );
     }
+    print("[ ParticipantWidget ] render child");
     return Container(
       child: child,
     );

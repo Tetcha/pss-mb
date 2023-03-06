@@ -213,9 +213,16 @@ class ConferenceController extends GetxController {
         .indexWhere((element) => element.id == event.remoteParticipant.sid);
 
     if (index != -1) {
-      // if (event is RemoteVideoTrackEvent) {
-      //   _setRemoteVideoEnabled(event: event);
-      // }
+      print(
+          "[ ParticipantWidget ] _addOrUpdateParticipant same participant: ${event}");
+      if (event is RemoteVideoTrackEvent) {
+      } else if (event is RemoteVideoTrackSubscriptionEvent) {
+        participants[index] = _buildParticipant(
+          child: event.remoteVideoTrack.widget(),
+          id: event.remoteParticipant.sid,
+          isCameraEnabled: event.remoteVideoTrack.isEnabled,
+        );
+      }
     } else {
       if (event is RemoteVideoTrackSubscriptionEvent) {
         participants.insert(
@@ -228,6 +235,7 @@ class ConferenceController extends GetxController {
         );
       }
     }
+    print("[ ParticipantWidget ] update widget");
     update();
   }
 }

@@ -28,8 +28,9 @@ class BookingApi extends GetxService {
 
   Future<List<Booking>?> getMyBooking() async {
     try {
-      final response = await _apiClient.http
-          .get('/student/${_userProvider.user.id}/bookings');
+      final response = await _apiClient.http.get(
+          '/student/${_userProvider.user.id}/bookings',
+          queryParameters: {'pageSize': 999, 'order': 'DESC'});
       return (response.data['data'] as List)
           .map((e) => Booking.fromJson(e))
           .toList();

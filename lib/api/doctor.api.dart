@@ -38,7 +38,6 @@ class DoctorApi extends GetxService {
           .get('/doctor/$doctorId/slots', queryParameters: {
         'to': to,
         'from': from,
-        'id': doctorId,
       });
 
       return (response.data as List).map((e) => Slot.fromJson(e)).toList();

@@ -36,7 +36,6 @@ class ConferenceScreen extends StatelessWidget {
 
   Widget _buildParticipants(List<ParticipantWidget> participants) {
     if (participants.isEmpty) return Container();
-
     return Stack(children: [participants[0]]);
   }
 

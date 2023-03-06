@@ -115,7 +115,7 @@ class TreatmentDetail extends StatelessWidget {
         title: const Text('Treatment Detail'),
       ),
       body: GetBuilder<TreatmentDetailController>(
-        init: TreatmentDetailController(),
+        init: TreatmentDetailController(booking: booking),
         builder: (_) => Column(
           children: [
             Expanded(
