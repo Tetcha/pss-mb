@@ -7,6 +7,7 @@ class Event {
   final String date;
   final bool status;
   final Doctor doctor;
+  final int slotEnumId;
   const Event({
     required this.slotId,
     required this.startTime,
@@ -14,5 +15,6 @@ class Event {
     required this.date,
     required this.status,
     required this.doctor,
+    required this.slotEnumId,
   });
 }

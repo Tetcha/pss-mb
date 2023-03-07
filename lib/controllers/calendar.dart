@@ -35,6 +35,7 @@ class CalendarController extends GetxController {
           date: slot.date,
           status: slot.booking!.isEmpty ? true : false,
           doctor: slot.doctor,
+          slotEnumId: slot.slotEnumId ?? -1,
         ));
       } else {
         data[date] = [
@@ -45,6 +46,7 @@ class CalendarController extends GetxController {
             date: slot.date,
             status: slot.booking!.isEmpty ? true : false,
             doctor: slot.doctor,
+            slotEnumId: slot.slotEnumId ?? -1,
           )
         ];
       }
@@ -66,15 +68,15 @@ class CalendarController extends GetxController {
   }
 
   List<Event> getEventsForDay(DateTime day) {
+    List<Event> data = kEvents[day]?.toList() ?? [];
+    data.sort((a, b) => a.slotEnumId > b.slotEnumId ? 1 : -1);
     // Implementation example
-    return kEvents[day]?.toList() ?? [];
+    return data;
   }
 
   void onFormatChange(CalendarFormat format) {
     if (calendarFormat != format) {
-      // setState(() {
       calendarFormat = format;
-      // });
     }
     update();
   }

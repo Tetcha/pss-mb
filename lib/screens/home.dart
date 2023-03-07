@@ -32,18 +32,35 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SectionTitle(label: "Available now:"),
+                const SizedBox(
+                  width: double.infinity,
+                  child: SectionTitle(label: "Available now:"),
+                ),
                 const SizedBox(height: 20),
-                ..._.availableDoctor.map((doctor) {
-                  return Column(
-                    children: [
-                      DoctorShortIntro(
-                          doctor: doctor,
-                          onPressed: () => _.onDoctorTap(doctor)),
-                      const SizedBox(height: 10),
-                    ],
-                  );
-                }).toList(),
+                Obx(
+                  () {
+                    if (_.isLoading.value) {
+                      return Container(
+                        margin: const EdgeInsets.only(top: 30),
+                        child: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                    }
+                    return Column(
+                      children: _.allDoctor.map((doctor) {
+                        return Column(
+                          children: [
+                            DoctorShortIntro(
+                                doctor: doctor,
+                                onPressed: () => _.onDoctorTap(doctor)),
+                            const SizedBox(height: 10),
+                          ],
+                        );
+                      }).toList(),
+                    );
+                  },
+                )
               ],
             ),
           )

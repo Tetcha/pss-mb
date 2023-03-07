@@ -14,7 +14,6 @@ class AllDoctorController extends GetxController {
   RxBool isEnd = false.obs;
   int countValue = 10;
   int _currentPage = 0;
-
   get itemCount {
     if (isEnd.value) return allDoctor.length;
     return allDoctor.length + 1;
@@ -23,7 +22,8 @@ class AllDoctorController extends GetxController {
   void getAllDoctor() async {
     FilterResponse<Doctor>? response = await _doctorService.getDoctorList(
         DoctorFilterPayload(currentPage: _currentPage, pageSize: 10));
-
+    // deplay 1s to show loading
+    await Future.delayed(const Duration(seconds: 1));
     allDoctor.addAll(response!.data);
     countValue = response.count;
 
@@ -32,7 +32,6 @@ class AllDoctorController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
 
     getAllDoctor();

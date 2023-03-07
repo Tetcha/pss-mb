@@ -18,8 +18,8 @@ class AllDoctorScreen extends StatelessWidget {
     final double availableHeight = screenHeight -
         statusBarHeight -
         appBarHeight -
-        bottomNavigationBarHeight -
-        30;
+        bottomNavigationBarHeight +
+        20;
     return GetBuilder<AllDoctorController>(
       init: AllDoctorController(),
       builder: (_) => Container(
@@ -28,8 +28,19 @@ class AllDoctorScreen extends StatelessWidget {
         ),
         child: Obx(
           () => _.allDoctor.isEmpty
-              ? const Center(
-                  child: Text("Looking for doctors..."),
+              ? Container(
+                  margin: const EdgeInsets.only(top: 30),
+                  child: Column(
+                    children: const [
+                      CircularProgressIndicator(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: Text("Looking for doctors..."),
+                      )
+                    ],
+                  ),
                 )
               : RefreshIndicator(
                   backgroundColor: Theme.of(context).primaryColor,

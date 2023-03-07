@@ -24,7 +24,7 @@ class TreatmentDetailController extends GetxController {
     // join meeting
     String? accessToken = await _twilioService.createToken(
       identity: _userProvider.currentUser.value.name,
-      roomName: "test-room",
+      roomName: booking.id,
       bookingId: booking.id,
     );
 

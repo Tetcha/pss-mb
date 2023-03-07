@@ -1,11 +1,16 @@
 import 'package:get/get.dart';
+import 'package:pss_m/interface/api/common.dart';
+import 'package:pss_m/interface/api/doctor/doctor_filter/doctor_filter.dart';
 import 'package:pss_m/screens/doctor_schedule.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/interface/carousel/carousel_item.dart';
-import 'package:pss_m/services/twilio.service.dart';
+import 'package:pss_m/services/doctor.service.dart';
 
 class HomeController extends GetxController {
+  final DoctorService _doctorService = Get.find();
+  late RxList<Doctor> allDoctor = RxList<Doctor>([]);
+  final isLoading = true.obs;
   final List<ICarouselItem> carouselData = [
     ICarouselItem(
       title: "Slide 1",
@@ -39,6 +44,12 @@ class HomeController extends GetxController {
     )
   ];
 
+  @override
+  void onInit() {
+    super.onInit();
+    getAllDoctor();
+  }
+
   Doctor doctor = const Doctor(
     id: "1",
     createAt: "",
@@ -63,6 +74,16 @@ class HomeController extends GetxController {
     doctor,
     doctor
   ];
+
+  void getAllDoctor() async {
+    FilterResponse<Doctor>? response = await _doctorService
+        .getDoctorList(DoctorFilterPayload(currentPage: 0, pageSize: 7));
+
+    allDoctor.addAll(response!.data);
+    // deplay 1s to show loading
+    await Future.delayed(const Duration(seconds: 1));
+    isLoading.value = false;
+  }
 
   void onDoctorTap(Doctor doctor) {
     Get.to(() => DoctorScheduleScreen(

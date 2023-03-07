@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pss_m/controllers/MyTreatment.controller.dart';
 import 'package:pss_m/core/constants/enum.dart';
 import 'package:pss_m/util/date.dart';
-import 'package:pss_m/util/string.dart';
 
 class MyTreatmentScreen extends StatelessWidget {
   const MyTreatmentScreen({super.key});
@@ -71,7 +70,7 @@ class MyTreatmentScreen extends StatelessWidget {
                             Text(
                                 'Time: ${e.slot?.startTime.toUpperCase()} - ${e.slot?.endTime.toUpperCase()}'),
                             const SizedBox(height: 8.0),
-                            Text('Cost: ${StringUtil.formatCurrency(e.cost)}'),
+                            Text('Doctor: ${e.slot?.doctor.name}'),
                           ],
                         ),
                       ),

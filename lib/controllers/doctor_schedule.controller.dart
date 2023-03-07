@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:pss_m/core/models/Doctor/doctor.dart';
 import 'package:pss_m/interface/api/slot/slot.dart';
 import 'package:pss_m/services/doctor.service.dart';
-import 'package:pss_m/util/date.dart';
 
 class DoctorScheduleController extends GetxController {
   final DoctorService _doctorService = Get.find();
@@ -13,7 +12,6 @@ class DoctorScheduleController extends GetxController {
 
   @override
   void onReady() async {
-    // TODO: implement onReady
     super.onReady();
 
     List<Slot>? slots = await _doctorService.getDoctorSlotsById(
