@@ -44,12 +44,6 @@ class HomeScreen extends StatelessWidget {
                     ],
                   );
                 }).toList(),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: _.onOpenConferenceDemo,
-                    child: const Text("See more"),
-                  ),
-                )
               ],
             ),
           )

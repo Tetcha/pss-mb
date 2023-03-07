@@ -204,7 +204,9 @@ class TreatmentDetail extends StatelessWidget {
                 children: [
                   Expanded(
                       child: ElevatedButton(
-                    onPressed: _.onJoinMeetingTap,
+                    onPressed: _.booking.status == BookingStatus.ACCEPTED
+                        ? _.onJoinMeetingTap
+                        : null,
                     child: const Text('Join the meeting'),
                   ))
                 ],

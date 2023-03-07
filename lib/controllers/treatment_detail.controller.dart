@@ -22,11 +22,14 @@ class TreatmentDetailController extends GetxController {
 
   void onJoinMeetingTap() async {
     // join meeting
-    String accessToken = await _twilioService.createToken(
+    String? accessToken = await _twilioService.createToken(
       identity: _userProvider.currentUser.value.name,
       roomName: "test-room",
       bookingId: booking.id,
     );
+
+    if (accessToken == null) return;
+
     Get.to(() => ConferenceScreen(
           identify: _userProvider.currentUser.value.name,
           token: accessToken,

@@ -18,7 +18,7 @@ class TwilioApi {
 
       return response.data?['token'];
     } catch (error) {
-      throw Exception([error.toString()]);
+      rethrow;
     }
   }
 }
