@@ -9,7 +9,6 @@ class ThemeController extends GetxController {
   late final Rx<MaterialColor?> _color = Rx<MaterialColor?>(null);
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     _color.value = _sharedPreferenceProvider.getColor;
   }
@@ -21,6 +20,5 @@ class ThemeController extends GetxController {
   void changeColor(MaterialColor? color) {
     _color.value = color;
     _sharedPreferenceProvider.saveColor(color!);
-    update();
   }
 }
