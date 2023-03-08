@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pss_m/providers/sharePreference.provider.dart';
 import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/interface/setting/setting.dart';
+import 'package:pss_m/screens/change_theme_color.dart';
 import 'package:pss_m/screens/login.dart';
 import 'package:pss_m/screens/profile.dart';
 
@@ -19,7 +20,15 @@ class SettingController extends GetxController {
             transition: Transition.leftToRight,
           );
         }),
-    ISettingItem(title: "Help", icon: Icons.help, onTap: () {}),
+    ISettingItem(
+        title: "Color Theme",
+        icon: Icons.color_lens,
+        onTap: () {
+          Get.to(
+            () => const ChangeThemeColorScreen(),
+            transition: Transition.leftToRight,
+          );
+        }),
     ISettingItem(title: "About", icon: Icons.info, onTap: () {}),
     ISettingItem(
         title: "Logout",

@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pss_m/controllers/theme.controller.dart';
 import 'package:pss_m/core/config/firebase.dart';
 import 'package:pss_m/core/config/injection.dart';
 import 'package:pss_m/core/constants/theme.dart';
@@ -55,14 +56,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   NotificationService notificationService = Get.find();
+  final ThemeController themeController = Get.put(ThemeController());
   @override
   Widget build(BuildContext context) {
     notificationService.init();
-    return GetMaterialApp(
-      title: 'PSS',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.getTheme(),
-      home: const DashBoardLayout(),
+    return Obx(
+      () => GetMaterialApp(
+        title: 'PSS',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.getTheme(themeController.color),
+        home: const DashBoardLayout(),
+      ),
     );
   }
 }
