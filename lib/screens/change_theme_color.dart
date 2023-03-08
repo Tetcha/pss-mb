@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pss_m/controllers/change_theme_color.controller.dart';
-import 'package:pss_m/core/constants/theme.dart';
 
 class ChangeThemeColorScreen extends StatelessWidget {
   const ChangeThemeColorScreen({super.key});
@@ -11,7 +9,7 @@ class ChangeThemeColorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Change Theme Color"),
+        title: const Text("Choose Theme Color"),
       ),
       body: GetBuilder<ChangeThemeColorController>(
         init: ChangeThemeColorController(),
