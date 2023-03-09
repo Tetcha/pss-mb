@@ -7,8 +7,8 @@ import 'package:pss_m/widgets/title/calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatelessWidget {
-  List<Slot> data;
-  Calendar({super.key, required this.data});
+  final List<Slot> data;
+  const Calendar({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +17,33 @@ class Calendar extends StatelessWidget {
       builder: (controller) => Column(
         children: [
           TableCalendar<Event>(
+            calendarBuilders: CalendarBuilders(
+              markerBuilder: (context, day, events) {
+                int numberOfEvents =
+                    events.where((element) => element.status == true).length;
+                if (numberOfEvents > 3) {
+                  numberOfEvents = 3;
+                }
+                return events.isEmpty
+                    ? const SizedBox.shrink()
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(numberOfEvents, (index) => 0)
+                            .map(
+                              (e) => Container(
+                                margin: const EdgeInsets.all(2.0),
+                                width: 7.0,
+                                height: 7.0,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.green,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      );
+              },
+            ),
             firstDay: kFirstDay,
             lastDay: kLastDay,
             focusedDay: controller.focusedDay,

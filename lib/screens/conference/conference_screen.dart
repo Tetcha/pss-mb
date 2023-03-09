@@ -35,8 +35,37 @@ class ConferenceScreen extends StatelessWidget {
   }
 
   Widget _buildParticipants(List<ParticipantWidget> participants) {
-    if (participants.isEmpty) return Container();
-    return Stack(children: [participants[0]]);
+    if (participants.isEmpty) {
+      return Positioned.fill(
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        child: Container(
+          color: Colors.black,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                CircularProgressIndicator(color: Colors.white),
+                Text('Waiting for doctor to join...',
+                    style: TextStyle(color: Colors.white)),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Positioned.fill(
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      child: Card(
+        child: participants[0],
+      ),
+    );
   }
 
   Widget showProgress() {

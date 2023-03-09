@@ -24,27 +24,36 @@ class ParticipantWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("[ ParticipantWidget ] build ${isCameraEnabled}");
     if (isCameraEnabled == false) {
-      return SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: const [
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-            Text("Camera is disabled"),
-          ],
-        ),
+      return Positioned.fill(
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        child: Expanded(
+            child: Container(
+          width: double.infinity,
+          color: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.videocam_off,
+                size: 100,
+                color: Colors.white,
+              ),
+              Text(
+                'Doctor camera is off',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        )),
       );
     }
-    print("[ ParticipantWidget ] render child");
+    print("[ APPDEBUG ] render child");
     return Container(
       child: child,
     );

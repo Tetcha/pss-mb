@@ -54,29 +54,45 @@ class MyTreatmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<MyTreatmentController>(
         init: MyTreatmentController(),
-        builder: ((_) => Column(
-              children: _.myBookingList
-                  .map(
-                    (e) => Card(
-                      child: ListTile(
-                        title: Text(
-                            "Date: ${DateUtil.serverStringToText(e.slot?.date)}"),
-                        leading: _renderTreatmentStatus(e.status),
-                        onTap: () => _.onBookingTap(e),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 8.0),
-                            Text(
-                                'Time: ${e.slot?.startTime.toUpperCase()} - ${e.slot?.endTime.toUpperCase()}'),
-                            const SizedBox(height: 8.0),
-                            Text('Doctor: ${e.slot?.doctor.name}'),
-                          ],
+        builder: ((_) => _.isLoading
+            ? Container(
+                margin: const EdgeInsets.only(top: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CircularProgressIndicator(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: Text("Loading..."),
+                    )
+                  ],
+                ),
+              )
+            : Column(
+                children: _.myBookingList
+                    .map(
+                      (e) => Card(
+                        child: ListTile(
+                          title: Text(
+                              "Date: ${DateUtil.serverStringToText(e.slot?.date)}"),
+                          leading: _renderTreatmentStatus(e.status),
+                          onTap: () => _.onBookingTap(e),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 8.0),
+                              Text(
+                                  'Time: ${e.slot?.startTime.toUpperCase()} - ${e.slot?.endTime.toUpperCase()}'),
+                              const SizedBox(height: 8.0),
+                              Text('Doctor: ${e.slot?.doctor.name}'),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  )
-                  .toList(),
-            )));
+                    )
+                    .toList(),
+              )));
   }
 }

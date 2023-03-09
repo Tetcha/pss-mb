@@ -31,6 +31,7 @@ class AllDoctorScreen extends StatelessWidget {
               ? Container(
                   margin: const EdgeInsets.only(top: 30),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       CircularProgressIndicator(),
                       SizedBox(

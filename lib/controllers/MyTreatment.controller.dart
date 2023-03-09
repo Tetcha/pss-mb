@@ -6,6 +6,7 @@ import 'package:pss_m/services/booking.service.dart';
 class MyTreatmentController extends GetxController {
   BookingService bookingService = BookingService();
   List<Booking> myBookingList = [];
+  bool isLoading = true;
   void getMyBookingList() async {
     List<Booking>? list = await bookingService.getMyBooking();
     if (list == null) {
@@ -14,6 +15,7 @@ class MyTreatmentController extends GetxController {
     }
 
     myBookingList = list;
+    isLoading = false;
     update();
   }
 

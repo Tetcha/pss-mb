@@ -80,6 +80,7 @@ class ConferenceController extends GetxController {
     await localVideoTrack.enable(!localVideoTrack.isEnabled);
 
     isShareCamera = !isShareCamera;
+    update();
   }
 
   connect() async {
@@ -151,11 +152,13 @@ class ConferenceController extends GetxController {
       isCameraEnabled:
           localParticipant.localVideoTracks[0].localVideoTrack.isEnabled,
     );
+    print("[ APPDEBUG ] myVideoInfo: ${room.remoteParticipants.length}");
     for (final remoteParticipant in room.remoteParticipants) {
       bool isParticipantAlreadyPresent = participants
           .any((participant) => participant.id == remoteParticipant.sid);
 
       if (isParticipantAlreadyPresent == false) {
+        print("[ APPDEBUG ] add exist participation:");
         _addRemoteParticipantListeners(remoteParticipant);
       }
     }
@@ -190,6 +193,7 @@ class ConferenceController extends GetxController {
         .add(remoteParticipant.onVideoTrackUnpublished.listen((event) {
       _setRemoteVideoEnabled(event: event, isCameraEnabled: false);
     }));
+    update();
   }
 
   void _setRemoteVideoEnabled({
@@ -213,9 +217,14 @@ class ConferenceController extends GetxController {
         .indexWhere((element) => element.id == event.remoteParticipant.sid);
 
     if (index != -1) {
-      print(
-          "[ ParticipantWidget ] _addOrUpdateParticipant same participant: ${event}");
       if (event is RemoteVideoTrackEvent) {
+        if (event is RemoteVideoTrackSubscriptionEvent) {
+          participants[index] = _buildParticipant(
+            child: event.remoteVideoTrack.widget(),
+            id: event.remoteParticipant.sid,
+            isCameraEnabled: event.remoteVideoTrack.isEnabled,
+          );
+        }
       } else if (event is RemoteVideoTrackSubscriptionEvent) {
         participants[index] = _buildParticipant(
           child: event.remoteVideoTrack.widget(),
@@ -225,6 +234,7 @@ class ConferenceController extends GetxController {
       }
     } else {
       if (event is RemoteVideoTrackSubscriptionEvent) {
+        print("[ APPDEBUG ] insert: ${event.remoteParticipant.sid}");
         participants.insert(
           0,
           _buildParticipant(
@@ -235,7 +245,7 @@ class ConferenceController extends GetxController {
         );
       }
     }
-    print("[ ParticipantWidget ] update widget");
+    print("[ APPDEBUG ] update widget");
     update();
   }
 }
