@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pss_m/providers/sharePreference.provider.dart';
 import 'package:pss_m/providers/user.provider.dart';
 import 'package:pss_m/interface/setting/setting.dart';
+import 'package:pss_m/screens/add_balance.dart';
 import 'package:pss_m/screens/change_theme_color.dart';
 import 'package:pss_m/screens/login.dart';
 import 'package:pss_m/screens/profile.dart';
@@ -21,7 +22,7 @@ class SettingController extends GetxController {
           );
         }),
     ISettingItem(
-        title: "Color Theme",
+        title: "Theme",
         icon: Icons.color_lens,
         onTap: () {
           Get.to(
@@ -29,7 +30,12 @@ class SettingController extends GetxController {
             transition: Transition.leftToRight,
           );
         }),
-    ISettingItem(title: "About", icon: Icons.info, onTap: () {}),
+    ISettingItem(
+        title: "Balance",
+        icon: Icons.wallet,
+        onTap: () {
+          Get.to(() => const AddBalanceScreen());
+        }),
     ISettingItem(
         title: "Logout",
         icon: Icons.logout,

@@ -54,7 +54,6 @@ class TextFieldC extends StatelessWidget {
           labelStyle: TextStyle(
             color: StyleTheme.formTitleColor,
           ),
-          hintText: hintText,
           errorText: error,
           prefixIcon: prefixIcon,
           suffixIcon: prefixIcon,

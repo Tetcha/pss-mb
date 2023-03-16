@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +10,7 @@ import 'package:pss_m/core/config/firebase.dart';
 import 'package:pss_m/core/config/injection.dart';
 import 'package:pss_m/core/constants/theme.dart';
 import 'package:pss_m/screens/dashboard.dart';
+import 'package:pss_m/services/Toast.service.dart';
 import 'package:pss_m/services/notification.service.dart';
 
 Future<void> main() async {
@@ -57,6 +59,31 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   NotificationService notificationService = Get.find();
   final ThemeController themeController = Get.put(ThemeController());
+  FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+  final ToastService toastService = Get.find();
+
+  Future<void> initDynamicLinks() async {
+    dynamicLinks.onLink.listen((dynamicLinkData) {
+      final Uri uri = dynamicLinkData.link;
+      String path = uri.path;
+      final queryParams = uri.queryParameters;
+      if (queryParams.isNotEmpty && path == '/add-balance') {
+        String? amount = queryParams['amount'];
+        toastService.showSuccess(
+            "Success pay ${amount}đ to your account, please check your balance");
+      }
+    }).onError((error) {
+      print('onLink error');
+      print(error.message);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initDynamicLinks();
+  }
+
   @override
   Widget build(BuildContext context) {
     notificationService.init();
