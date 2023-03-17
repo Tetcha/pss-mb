@@ -4,13 +4,8 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:pss_m/controllers/theme.controller.dart';
 import 'package:pss_m/core/config/firebase.dart';
 import 'package:pss_m/core/config/injection.dart';
-import 'package:pss_m/core/constants/theme.dart';
-import 'package:pss_m/screens/dashboard.dart';
-import 'package:pss_m/services/notification.service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

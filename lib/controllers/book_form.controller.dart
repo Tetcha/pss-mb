@@ -42,15 +42,18 @@ class BookFormController extends GetxController {
 
     List<String> convertedQuestionList =
         questionList.whereType<String>().toList();
-    var response = await _bookingService.bookSlot(
-      slotId: currentEvent.slotId,
-      questionContent: convertedQuestionList,
-    );
+    try {
+      var response = await _bookingService.bookSlot(
+        slotId: currentEvent.slotId,
+        questionContent: convertedQuestionList,
+      );
+      if (response == null) return;
 
-    if (response == null) return;
-
-    Get.back();
-    _toastService.showSuccess(
-        "Booking success, please wait for confirmation from doctor");
+      Get.back();
+      _toastService.showSuccess(
+          "Booking success, please wait for confirmation from doctor");
+    } catch (e) {
+      print("error $e");
+    }
   }
 }

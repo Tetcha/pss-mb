@@ -18,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return GetBuilder<LoginController>(
       init: LoginController(),
       builder: (controller) => EmptyLayout(
+        layoutPadding: 0,
         children: Container(
           color: Theme.of(context).backgroundColor,
           child: Column(
@@ -25,8 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 margin:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
-                child: const FlutterLogo(
-                  size: 80,
+                child: const Image(
+                  image: AssetImage('assets/images/logo.png'),
+                  width: 140,
+                  height: 140,
                 ),
               ),
               Container(

@@ -10,7 +10,7 @@ class UserWelcome extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<UserWelcomeController>(
       init: UserWelcomeController(),
-      builder: (controller) => Row(
+      builder: (_) => Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
@@ -18,7 +18,7 @@ class UserWelcome extends StatelessWidget {
             child: CircleAvatar(
               radius: 55,
               backgroundImage: NetworkImage(
-                controller.avatarUrl ?? "",
+                _.avatarUrl ?? "",
               ),
             ),
           ),
@@ -29,20 +29,20 @@ class UserWelcome extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                controller.name,
+                _.name,
                 style: const TextStyle(
                   fontSize: StyleTheme.bigTitleSize,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 10),
-              Text(
-                "Balance: ${controller.balance} VNĐ",
-                style: TextStyle(
-                  fontSize: StyleTheme.helperTextSize,
-                  color: StyleTheme.helperTextColor,
-                ),
-              )
+              Obx(() => Text(
+                    "Balance: ${_.balance} VNĐ",
+                    style: TextStyle(
+                      fontSize: StyleTheme.helperTextSize,
+                      color: StyleTheme.helperTextColor,
+                    ),
+                  ))
             ],
           ))
         ],
